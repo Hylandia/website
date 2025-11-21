@@ -91,7 +91,9 @@ export function AddPasswordModal({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={handleClose}
+            transition={{ duration: 0.2 }}
+            style={{ willChange: "opacity" }}
+            onClick={onClose}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
           />
 

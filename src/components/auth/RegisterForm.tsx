@@ -24,43 +24,43 @@ export function RegisterForm({
   setShowPassword,
 }: RegisterFormProps) {
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-      <div className="grid grid-cols-2 gap-4">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">
+          <label className="block text-white/90 text-xs md:text-sm font-bold mb-1.5 uppercase tracking-wider">
             First Name
           </label>
           <div className="relative">
-            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
+            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10" />
             <Input
               type="text"
               placeholder="John"
-              className="w-full bg-white/5 border-2 border-white/20 py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent"
+              className="w-full bg-white/5 border-2 border-white/20 py-2 pl-10 pr-3 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent text-sm"
               {...form.register("firstName")}
             />
           </div>
           {form.formState.errors.firstName && (
-            <p className="text-red-400 text-xs mt-1">
+            <p className="text-red-400 text-xs mt-0.5">
               {form.formState.errors.firstName.message}
             </p>
           )}
         </div>
 
         <div>
-          <label className="block text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">
+          <label className="block text-white/90 text-xs md:text-sm font-bold mb-1.5 uppercase tracking-wider">
             Last Name
           </label>
           <div className="relative">
-            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
+            <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10" />
             <Input
               type="text"
               placeholder="Doe"
-              className="w-full bg-white/5 border-2 border-white/20 py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent"
+              className="w-full bg-white/5 border-2 border-white/20 py-2 pl-10 pr-3 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent text-sm"
               {...form.register("lastName")}
             />
           </div>
           {form.formState.errors.lastName && (
-            <p className="text-red-400 text-xs mt-1">
+            <p className="text-red-400 text-xs mt-0.5">
               {form.formState.errors.lastName.message}
             </p>
           )}
@@ -68,85 +68,85 @@ export function RegisterForm({
       </div>
 
       <div>
-        <label className="block text-white/80 text-sm font-medium mb-2">
+        <label className="block text-white/90 text-xs md:text-sm font-bold mb-1.5 uppercase tracking-wider">
           Username
         </label>
         <div className="relative">
-          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
+          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10" />
           <Input
             type="text"
             placeholder="Choose your username"
-            className="w-full bg-white/5 border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto"
+            className="w-full bg-white/5 border-2 border-white/20 py-2 pl-10 pr-3 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent text-sm"
             {...form.register("username")}
           />
         </div>
         {form.formState.errors.username && (
-          <p className="text-red-400 text-xs mt-1">
+          <p className="text-red-400 text-xs mt-0.5">
             {form.formState.errors.username.message}
           </p>
         )}
       </div>
 
       <div>
-        <label className="block text-white/80 text-sm font-medium mb-2">
+        <label className="block text-white/90 text-xs md:text-sm font-bold mb-1.5 uppercase tracking-wider">
           Email
         </label>
         <div className="relative">
-          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
+          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10" />
           <Input
             type="email"
             placeholder="your@email.com"
-            className="w-full bg-white/5 border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto"
+            className="w-full bg-white/5 border-2 border-white/20 py-2 pl-10 pr-3 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent text-sm"
             {...form.register("email")}
           />
         </div>
         {form.formState.errors.email && (
-          <p className="text-red-400 text-xs mt-1">
+          <p className="text-red-400 text-xs mt-0.5">
             {form.formState.errors.email.message}
           </p>
         )}
       </div>
 
       <div>
-        <label className="block text-white/80 text-sm font-medium mb-2">
+        <label className="block text-white/90 text-xs md:text-sm font-bold mb-1.5 uppercase tracking-wider">
           Password
         </label>
         <div className="relative">
-          <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10" />
           <Input
             type={showPassword ? "text" : "password"}
             placeholder="••••••••"
-            className="w-full bg-white/5 border-white/10 rounded-xl py-3 pl-12 pr-12 text-white placeholder:text-white/30 h-auto"
+            className="w-full bg-white/5 border-2 border-white/20 py-2 pl-10 pr-10 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent text-sm"
             {...form.register("password")}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors z-10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors z-10"
           >
             {showPassword ? (
-              <EyeOff className="w-5 h-5" />
+              <EyeOff className="w-4 h-4" />
             ) : (
-              <Eye className="w-5 h-5" />
+              <Eye className="w-4 h-4" />
             )}
           </button>
         </div>
         {form.formState.errors.password && (
-          <p className="text-red-400 text-xs mt-1">
+          <p className="text-red-400 text-xs mt-0.5">
             {form.formState.errors.password.message}
           </p>
         )}
-        <p className="text-white/40 text-xs mt-1">
+        <p className="text-white/40 text-xs mt-0.5">
           Must be 8+ characters with uppercase, lowercase, and a number
         </p>
       </div>
 
       <div>
-        <label className="block text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">
+        <label className="block text-white/90 text-xs md:text-sm font-bold mb-1.5 uppercase tracking-wider">
           Confirm Password
         </label>
         <div className="relative">
-          <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 z-10" />
+          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 z-10" />
           <Input
             type={showPassword ? "text" : "password"}
             placeholder="••••••••"

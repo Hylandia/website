@@ -29,29 +29,31 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
         />
         <div className="absolute inset-0 bg-linear-to-br from-neutral/70 via-primary/20 to-secondary/30" />
 
-        {/* Animated gradient orbs */}
+        {/* Animated gradient orbs - optimized */}
         <motion.div
-          className="absolute top-20 -left-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+          className="absolute top-20 -left-20 w-96 h-96 bg-primary/15 rounded-full blur-3xl"
+          style={{ willChange: "transform" }}
           animate={{
             x: [0, 50, 0],
             y: [0, 30, 0],
           }}
           transition={{
-            duration: 8,
+            duration: 12,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "linear",
           }}
         />
         <motion.div
-          className="absolute bottom-20 -right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
+          className="absolute bottom-20 -right-20 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"
+          style={{ willChange: "transform" }}
           animate={{
             x: [0, -50, 0],
             y: [0, -30, 0],
           }}
           transition={{
-            duration: 10,
+            duration: 15,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "linear",
           }}
         />
       </motion.div>
@@ -60,7 +62,7 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
       <div className="relative z-10 flex flex-col gap-12 justify-center items-center w-full px-6 py-32">
         <div className="flex flex-col gap-8 justify-center items-center">
           {/* Decorative top element */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, duration: 0.5 }}
@@ -71,7 +73,7 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
               Coming to Hytale
             </div>
             <Sword className="w-8 h-8 text-accent drop-shadow-[0_0_8px_rgba(177,182,124,0.6)]" />
-          </motion.div>
+          </motion.div> */}
 
           <div className="flex flex-col gap-6 justify-center items-center">
             <motion.h1
@@ -90,12 +92,14 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
                 HYLANDIA
                 <motion.div
                   className="absolute -inset-2 bg-linear-to-r from-primary/20 via-secondary/20 to-tertiary/20 blur-xl -z-10"
+                  style={{ willChange: "opacity" }}
                   animate={{
-                    opacity: [0.5, 0.8, 0.5],
+                    opacity: [0.5, 0.7, 0.5],
                   }}
                   transition={{
-                    duration: 2,
+                    duration: 4,
                     repeat: Infinity,
+                    ease: "linear",
                   }}
                 />
               </span>
@@ -114,29 +118,6 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
               </span>
             </motion.p>
           </div>
-
-          {/* Decorative divider */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="relative w-full max-w-md h-px my-4"
-          >
-            <div className="absolute inset-0 bg-linear-to-r from-transparent via-accent to-transparent shadow-[0_0_8px_rgba(177,182,124,0.6)]" />
-            <motion.div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [1, 0.5, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-            >
-              <Crown className="w-5 h-5 text-accent drop-shadow-[0_0_8px_rgba(177,182,124,0.8)]" />
-            </motion.div>
-          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div

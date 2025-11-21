@@ -7,7 +7,7 @@ interface FloatingParticlesProps {
   count?: number;
 }
 
-export function FloatingParticles({ count = 30 }: FloatingParticlesProps) {
+export function FloatingParticles({ count = 12 }: FloatingParticlesProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,15 +27,17 @@ export function FloatingParticles({ count = 30 }: FloatingParticlesProps) {
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
+            willChange: "transform, opacity",
           }}
           animate={{
             y: [0, -30, 0],
             opacity: [0.3, 0.7, 0.3],
           }}
           transition={{
-            duration: 3 + Math.random() * 2,
+            duration: 4 + Math.random() * 3,
             repeat: Infinity,
             delay: Math.random() * 2,
+            ease: "linear",
           }}
         />
       ))}

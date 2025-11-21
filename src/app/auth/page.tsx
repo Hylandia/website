@@ -256,22 +256,23 @@ function AuthPageContent() {
   }
 
   return (
-    <div className="h-screen w-screen bg-neutral relative overflow-hidden flex items-center justify-center">
+    <div className="min-h-screen w-screen bg-neutral relative overflow-y-auto flex items-center justify-center py-8">
       <AuthBackground />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-8">
+        <div className="grid md:grid-cols-2 gap-8 items-start md:items-center">
           <AuthBranding />
 
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
+            className="w-full"
           >
-            <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-2xl">
+            <div className="bg-white/5 backdrop-blur-xl border-2 border-white/20 p-6 md:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
               <Link
                 href="/"
-                className="flex md:hidden items-center gap-3 mb-8 group"
+                className="flex md:hidden items-center gap-3 mb-6 group"
               >
                 <Swords className="w-8 h-8 text-secondary group-hover:rotate-12 transition-transform" />
                 <h1 className="text-3xl font-black bg-linear-to-r from-secondary via-primary to-tertiary bg-clip-text text-transparent pb-2 leading-tight">
@@ -279,17 +280,17 @@ function AuthPageContent() {
                 </h1>
               </Link>
 
-              <div className="flex gap-2 bg-white/5 p-1 rounded-xl mb-8">
+              <div className="flex gap-2 bg-white/5 p-1 mb-6">
                 <button
                   type="button"
                   onClick={() => {
                     setIsLogin(true);
                     setErrors(undefined);
                   }}
-                  className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all ${
+                  className={`flex-1 py-2 md:py-3 px-4 md:px-6 font-bold transition-all uppercase tracking-wider border-2 text-sm md:text-base ${
                     isLogin
-                      ? "bg-linear-to-r from-primary to-secondary text-white shadow-lg"
-                      : "text-white/60 hover:text-white"
+                      ? "bg-linear-to-r from-primary to-secondary text-white shadow-[inset_0_2px_0_rgba(255,255,255,0.2)] border-primary/40"
+                      : "text-white/60 hover:text-white border-transparent hover:border-white/20"
                   }`}
                 >
                   Login
@@ -300,10 +301,10 @@ function AuthPageContent() {
                     setIsLogin(false);
                     setErrors(undefined);
                   }}
-                  className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all ${
+                  className={`flex-1 py-2 md:py-3 px-4 md:px-6 font-bold transition-all uppercase tracking-wider border-2 text-sm md:text-base ${
                     !isLogin
-                      ? "bg-linear-to-r from-primary to-secondary text-white shadow-lg"
-                      : "text-white/60 hover:text-white"
+                      ? "bg-linear-to-r from-primary to-secondary text-white shadow-[inset_0_2px_0_rgba(255,255,255,0.2)] border-primary/40"
+                      : "text-white/60 hover:text-white border-transparent hover:border-white/20"
                   }`}
                 >
                   Register

@@ -260,7 +260,7 @@ export default function ConnectionsPage() {
   return (
     <>
       {/* Breadcrumb */}
-      <div className="mb-6 text-sm text-neutral-400">
+      <div className="mb-6 text-sm text-neutral-400 uppercase tracking-wider">
         <Link href="/" className="hover:text-primary transition-colors">
           Home
         </Link>
@@ -278,12 +278,12 @@ export default function ConnectionsPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-neutral-800/80 backdrop-blur-xl border border-primary/20 rounded-2xl p-8 shadow-2xl"
+        className="bg-neutral-800/80 backdrop-blur-xl border-2 border-primary/20 p-8 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_20px_25px_-5px_rgba(0,0,0,0.7)]"
       >
         <div className="flex items-center gap-3 mb-8">
-          <Mail className="w-8 h-8 text-primary" />
+          <Mail className="w-8 h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
           <div>
-            <h1 className="text-3xl font-bold text-white">
+            <h1 className="text-3xl font-bold text-white font-cinzel uppercase tracking-wider">
               Connected Accounts
             </h1>
             <p className="text-sm text-neutral-400 mt-1">
@@ -303,15 +303,15 @@ export default function ConnectionsPage() {
               return (
                 <div
                   key={account.id}
-                  className="flex items-center justify-between p-4 bg-neutral-900/50 border border-neutral-700/50 rounded-lg"
+                  className="flex items-center justify-between p-4 bg-neutral-900/50 border-2 border-neutral-700/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center">
+                    <div className="w-12 h-12 bg-primary/20 border-2 border-primary/30 flex items-center justify-center">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <p className="font-semibold text-white">
+                        <p className="font-bold text-white uppercase tracking-wide">
                           {providerName}
                         </p>
                         <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -382,8 +382,8 @@ export default function ConnectionsPage() {
         </div>
 
         {externalAccounts.length === 0 && !user?.passwordEnabled && (
-          <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
-            <p className="text-yellow-400 text-sm">
+          <div className="mb-6 p-4 bg-yellow-500/10 border-2 border-yellow-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
+            <p className="text-yellow-400 text-sm font-semibold">
               ⚠️ You must have at least one sign-in method. Add a password or
               connect an account.
             </p>
@@ -395,9 +395,9 @@ export default function ConnectionsPage() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg"
+            className="mb-6 p-4 bg-red-500/10 border-2 border-red-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]"
           >
-            <p className="text-red-400 text-sm flex items-center gap-2">
+            <p className="text-red-400 text-sm flex items-center gap-2 font-semibold uppercase tracking-wide">
               <AlertCircle className="w-4 h-4" />
               {error}
             </p>
@@ -405,8 +405,8 @@ export default function ConnectionsPage() {
         )}
 
         {/* Available Providers */}
-        <div className="border-t border-neutral-700/50 pt-6">
-          <h2 className="text-lg font-semibold text-white mb-4">
+        <div className="border-t-2 border-neutral-700/50 pt-6">
+          <h2 className="text-lg font-semibold text-white font-cinzel uppercase tracking-wider mb-4">
             Add Connection
           </h2>
 
@@ -424,7 +424,7 @@ export default function ConnectionsPage() {
                   key={provider}
                   onClick={() => !isConnected && handleConnect(provider)}
                   disabled={isConnected || isLoading === provider}
-                  className={`p-4 border rounded-lg transition-all ${
+                  className={`p-4 border-2 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] ${
                     isConnected
                       ? "bg-neutral-900/30 border-neutral-700/30 cursor-not-allowed opacity-50"
                       : "bg-neutral-900/50 border-neutral-700/50 hover:border-primary/50 hover:bg-neutral-800/50"
@@ -432,7 +432,7 @@ export default function ConnectionsPage() {
                 >
                   <div className="flex flex-col items-center gap-2">
                     <Icon className="w-8 h-8 text-primary" />
-                    <span className="text-sm font-medium text-white">
+                    <span className="text-sm font-bold text-white uppercase tracking-wide">
                       {providerName}
                     </span>
                     {isConnected ? (
@@ -460,11 +460,11 @@ export default function ConnectionsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl flex items-start gap-3"
+          className="mt-6 p-4 bg-yellow-500/10 border-2 border-yellow-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] flex items-start gap-3"
         >
-          <Shield className="w-5 h-5 text-yellow-400 mt-0.5" />
+          <Shield className="w-5 h-5 text-yellow-400 mt-0.5 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
           <div>
-            <p className="text-yellow-400 font-semibold text-sm">
+            <p className="text-yellow-400 font-bold text-sm uppercase tracking-wide">
               Password Required for Connection Changes
             </p>
             <p className="text-yellow-400/80 text-sm mt-1">
@@ -484,14 +484,14 @@ export default function ConnectionsPage() {
       {/* Debug Info */}
       {process.env.NODE_ENV === "development" && (
         <div className="mt-6 space-y-3">
-          <div className="p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg flex items-start gap-2">
+          <div className="p-3 bg-yellow-500/10 border-2 border-yellow-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] flex items-start gap-2">
             <Shield className="w-4 h-4 text-yellow-400 mt-0.5 shrink-0" />
             <p className="text-xs text-yellow-400">
               <strong>Development Mode:</strong> Debug information is only
               visible in development environment.
             </p>
           </div>
-          <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg text-xs text-blue-400 font-mono">
+          <div className="p-4 bg-blue-500/10 border-2 border-blue-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] text-xs text-blue-400 font-mono">
             <div>External Accounts: {externalAccounts.length}</div>
             {externalAccounts.map((acc, i) => (
               <div key={i} className="mt-1">
@@ -515,7 +515,7 @@ export default function ConnectionsPage() {
             </div>
             <button
               onClick={() => user?.reload()}
-              className="mt-2 px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 rounded text-white"
+              className="mt-2 px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 text-white border-2 border-blue-500/40 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] uppercase tracking-wider font-semibold text-xs"
             >
               Reload User Data
             </button>

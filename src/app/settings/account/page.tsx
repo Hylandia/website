@@ -169,36 +169,48 @@ export default function AccountSettingsPage() {
     <>
       {/* Breadcrumb */}
       <div className="mb-6 text-sm text-neutral-400">
-        <Link href="/" className="hover:text-primary transition-colors">
+        <Link
+          href="/"
+          className="hover:text-primary transition-colors uppercase tracking-wider font-semibold"
+        >
           Home
         </Link>
         <span className="mx-2">/</span>
-        <span className="text-white">Account Settings</span>
+        <span className="text-white uppercase tracking-wider font-semibold">
+          Account Settings
+        </span>
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-neutral-800/80 backdrop-blur-xl border border-primary/20 rounded-2xl p-8 shadow-2xl"
+        className="bg-neutral-800/80 backdrop-blur-xl border-2 border-primary/40 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
       >
         <div className="flex items-center gap-3 mb-8">
-          <User className="w-8 h-8 text-primary" />
-          <h1 className="text-3xl font-bold text-white">Account Settings</h1>
+          <Shield className="w-8 h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
+          <h1
+            className="text-3xl font-black text-white uppercase tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
+            style={{ fontFamily: "var(--font-cinzel)" }}
+          >
+            Account Settings
+          </h1>
         </div>
 
         {/* Profile Picture */}
         <div className="mb-8">
-          <Label className="text-white mb-3 block">Profile Picture</Label>
+          <Label className="text-white mb-3 block uppercase tracking-wider font-bold">
+            Profile Picture
+          </Label>
           <div className="flex items-center gap-6">
             <div className="relative group">
               {user.imageUrl ? (
                 <img
                   src={user.imageUrl}
                   alt="Profile"
-                  className="w-24 h-24 rounded-full border-4 border-primary/30 object-cover"
+                  className="w-24 h-24 border-4 border-primary/40 object-cover shadow-[0_4px_12px_rgba(0,0,0,0.4)]"
                 />
               ) : (
-                <div className="w-24 h-24 rounded-full bg-primary/20 border-4 border-primary/30 flex items-center justify-center">
+                <div className="w-24 h-24 bg-primary/20 border-4 border-primary/40 flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.4)]">
                   <User className="w-12 h-12 text-primary" />
                 </div>
               )}
@@ -253,7 +265,10 @@ export default function AccountSettingsPage() {
         <div className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <Label htmlFor="firstName" className="text-white mb-2 block">
+              <Label
+                htmlFor="firstName"
+                className="text-white mb-2 block uppercase tracking-wider font-cinzel font-semibold"
+              >
                 First Name
               </Label>
               <div className="relative">
@@ -271,7 +286,10 @@ export default function AccountSettingsPage() {
             </div>
 
             <div>
-              <Label htmlFor="lastName" className="text-white mb-2 block">
+              <Label
+                htmlFor="lastName"
+                className="text-white mb-2 block uppercase tracking-wider font-cinzel font-semibold"
+              >
                 Last Name
               </Label>
               <div className="relative">
@@ -290,7 +308,10 @@ export default function AccountSettingsPage() {
           </div>
 
           <div>
-            <Label htmlFor="username" className="text-white mb-2 block">
+            <Label
+              htmlFor="username"
+              className="text-white mb-2 block uppercase tracking-wider font-cinzel font-semibold"
+            >
               Username
             </Label>
             <div className="relative">
@@ -308,7 +329,10 @@ export default function AccountSettingsPage() {
           </div>
 
           <div>
-            <Label htmlFor="email" className="text-white mb-2 block">
+            <Label
+              htmlFor="email"
+              className="text-white mb-2 block uppercase tracking-wider font-cinzel font-semibold"
+            >
               Email Address
             </Label>
             <div className="relative">
@@ -331,9 +355,9 @@ export default function AccountSettingsPage() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg"
+            className="mt-6 p-4 bg-green-500/10 border-2 border-green-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]"
           >
-            <p className="text-green-400 text-sm">
+            <p className="text-green-400 text-sm font-semibold uppercase tracking-wide">
               Profile updated successfully!
             </p>
           </motion.div>
