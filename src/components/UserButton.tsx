@@ -49,21 +49,23 @@ export function UserButton() {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-3 px-3 py-2 rounded-lg bg-neutral-800/50 border border-neutral-700/50 hover:border-primary/50 transition-all duration-200"
+        className="flex items-center gap-3 px-3 py-2 bg-neutral-800/50 border-2 border-neutral-700/50 hover:border-primary/50 transition-all duration-200 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]"
       >
         {user.imageUrl ? (
           <img
             src={user.imageUrl}
             alt={displayName}
-            className="w-8 h-8 rounded-full border-2 border-primary/30"
+            className="w-8 h-8 border-2 border-primary/30"
           />
         ) : (
-          <div className="w-8 h-8 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center">
+          <div className="w-8 h-8 bg-primary/20 border-2 border-primary/30 flex items-center justify-center">
             <User className="w-4 h-4 text-primary" />
           </div>
         )}
         <div className="hidden md:flex flex-col items-start">
-          <span className="text-sm font-medium text-white">{displayName}</span>
+          <span className="text-sm font-bold text-white uppercase tracking-wider">
+            {displayName}
+          </span>
           {email && <span className="text-xs text-neutral-400">{email}</span>}
         </div>
         <ChevronDown
@@ -80,24 +82,24 @@ export function UserButton() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 mt-2 w-72 bg-neutral-800 border border-neutral-700/50 rounded-xl shadow-2xl overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-72 bg-neutral-800 border-2 border-neutral-700/50 shadow-[0_8px_24px_rgba(0,0,0,0.6)] overflow-hidden z-50"
           >
             {/* User Info Header */}
-            <div className="p-4 bg-neutral-900/50 border-b border-neutral-700/50">
+            <div className="p-4 bg-neutral-900/50 border-b-2 border-neutral-700/50">
               <div className="flex items-center gap-3">
                 {user.imageUrl ? (
                   <img
                     src={user.imageUrl}
                     alt={displayName}
-                    className="w-12 h-12 rounded-full border-2 border-primary/30"
+                    className="w-12 h-12 border-2 border-primary/30"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary/20 border-2 border-primary/30 flex items-center justify-center">
                     <User className="w-6 h-6 text-primary" />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-white truncate">
+                  <p className="text-sm font-bold text-white truncate uppercase tracking-wider">
                     {displayName}
                   </p>
                   {email && (
@@ -112,7 +114,7 @@ export function UserButton() {
               <Link
                 href="/settings/account"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors"
+                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
                 <User className="w-4 h-4" />
                 Account Settings
@@ -121,7 +123,7 @@ export function UserButton() {
               <Link
                 href="/settings/connections"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors"
+                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
                 <Mail className="w-4 h-4" />
                 Connected Accounts
@@ -130,7 +132,7 @@ export function UserButton() {
               <Link
                 href="/settings/security"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors"
+                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
                 <Shield className="w-4 h-4" />
                 Security & Sessions
@@ -139,7 +141,7 @@ export function UserButton() {
               <Link
                 href="/settings/preferences"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors"
+                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
                 <Settings className="w-4 h-4" />
                 Preferences
@@ -148,7 +150,7 @@ export function UserButton() {
               <Link
                 href="/settings/game-stats"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors"
+                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
                 <Gamepad2 className="w-4 h-4" />
                 Game Stats
@@ -156,7 +158,7 @@ export function UserButton() {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-neutral-700/50"></div>
+            <div className="border-t-2 border-neutral-700/50"></div>
 
             {/* Sign Out */}
             <div className="py-2">
@@ -165,7 +167,7 @@ export function UserButton() {
                   setIsOpen(false);
                   signOut();
                 }}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors w-full"
+                className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors w-full font-semibold uppercase tracking-wide"
               >
                 <LogOut className="w-4 h-4" />
                 Sign Out

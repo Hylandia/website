@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cinzel, MedievalSharp, Cinzel_Decorative } from "next/font/google";
 // @ts-ignore
 import "./globals.css";
 import ClerkProvider from "@/providers/ClerkProvider";
 import ReactQueryProvider from "@/providers/QueryProvider";
 import { Navigation } from "@/components/Navigation";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const medievalSharp = MedievalSharp({
+  variable: "--font-medieval",
   subsets: ["latin"],
+  weight: ["400"],
+});
+
+const cinzelDecorative = Cinzel_Decorative({
+  variable: "--font-cinzel-decorative",
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +40,7 @@ export default function RootLayout({
       <ReactQueryProvider>
         <html lang="en" className="dark">
           <body
-            className={`${geistSans.variable} overflow-x-hidden ${geistMono.variable} antialiased`}
+            className={`${cinzel.variable} ${medievalSharp.variable} ${cinzelDecorative.variable} overflow-x-hidden antialiased`}
           >
             <Navigation />
             <main className="min-h-screen">{children}</main>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Swords, Crown, Sparkles, Copy, Check } from "lucide-react";
+import { Sword, Crown, Sparkles, Copy, Check, Shield } from "lucide-react";
 
 interface HeroSectionProps {
   onCopyIP: () => void;
@@ -66,11 +66,11 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="flex gap-3 items-center"
           >
-            <Swords className="w-8 h-8 text-accent" />
-            <div className="text-accent/80 text-sm font-semibold tracking-widest uppercase">
+            <Sword className="w-8 h-8 text-accent drop-shadow-[0_0_8px_rgba(177,182,124,0.6)]" />
+            <div className="text-accent/90 text-sm font-bold tracking-[0.3em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
               Coming to Hytale
             </div>
-            <Swords className="w-8 h-8 text-accent" />
+            <Sword className="w-8 h-8 text-accent drop-shadow-[0_0_8px_rgba(177,182,124,0.6)]" />
           </motion.div>
 
           <div className="flex flex-col gap-6 justify-center items-center">
@@ -83,10 +83,11 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
                 type: "spring",
                 stiffness: 50,
               }}
-              className="text-7xl md:text-9xl font-black text-white tracking-tight text-center relative"
+              className="text-7xl md:text-9xl font-black text-white tracking-wider text-center relative"
+              style={{ fontFamily: "var(--font-cinzel-decorative)" }}
             >
-              <span className="relative inline-block">
-                Hylandia
+              <span className="relative inline-block drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                HYLANDIA
                 <motion.div
                   className="absolute -inset-2 bg-linear-to-r from-primary/20 via-secondary/20 to-tertiary/20 blur-xl -z-10"
                   animate={{
@@ -104,11 +105,11 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.75 }}
-              className="text-white md:text-xl text-lg text-center max-w-2xl leading-relaxed font-light drop-shadow-lg"
+              className="text-white md:text-xl text-lg text-center max-w-2xl leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
             >
               A minigames server where your progress actually means something.
               <br />
-              <span className="text-white font-semibold drop-shadow-lg">
+              <span className="text-secondary font-bold drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] tracking-wide">
                 Launching shortly after Hytale does.
               </span>
             </motion.p>
@@ -121,9 +122,9 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
             transition={{ delay: 0.8, duration: 0.6 }}
             className="relative w-full max-w-md h-px my-4"
           >
-            <div className="absolute inset-0 bg-linear-to-r from-transparent via-accent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-transparent via-accent to-transparent shadow-[0_0_8px_rgba(177,182,124,0.6)]" />
             <motion.div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-accent rounded-full"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               animate={{
                 scale: [1, 1.5, 1],
                 opacity: [1, 0.5, 1],
@@ -132,7 +133,9 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
                 duration: 2,
                 repeat: Infinity,
               }}
-            />
+            >
+              <Crown className="w-5 h-5 text-accent drop-shadow-[0_0_8px_rgba(177,182,124,0.8)]" />
+            </motion.div>
           </motion.div>
 
           {/* CTA Buttons */}
@@ -147,18 +150,19 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
               onClick={onCopyIP}
               whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0] }}
               whileTap={{ scale: 0.95 }}
-              className="group relative px-12 py-4 rounded-full font-bold cursor-pointer transition-all bg-linear-to-r from-primary to-secondary hover:from-secondary hover:to-tertiary flex items-center gap-2 shadow-lg shadow-primary/30"
+              className="group relative px-12 py-4 font-bold cursor-pointer transition-all bg-linear-to-r from-primary to-secondary hover:from-secondary hover:to-tertiary flex items-center gap-2 shadow-[inset_0_2px_0_rgba(255,255,255,0.2),0_6px_16px_rgba(0,0,0,0.4)] border-2 border-primary/40 uppercase tracking-wider"
             >
-              <span className="text-white text-lg">
+              <Shield className="w-5 h-5 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
+              <span className="text-white text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
                 {copiedIP ? "Copied!" : "play.hylandia.net"}
               </span>
               {copiedIP ? (
-                <Check className="w-5 h-5 text-white" />
+                <Check className="w-5 h-5 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
               ) : (
-                <Copy className="w-5 h-5 text-white" />
+                <Copy className="w-5 h-5 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
               )}
               <motion.div
-                className="absolute inset-0 rounded-full bg-white/20"
+                className="absolute inset-0 bg-white/20"
                 initial={{ scale: 0, opacity: 0 }}
                 whileHover={{ scale: 1.5, opacity: 0 }}
                 transition={{ duration: 0.6 }}
@@ -169,10 +173,10 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
               type="button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-12 py-4 rounded-full font-bold cursor-pointer hover:bg-white/10 bg-white/5 border-2 border-accent/40 text-white backdrop-blur-sm transition-all"
+              className="px-12 py-4 font-bold cursor-pointer hover:bg-white/10 bg-white/5 border-2 border-accent/50 text-white backdrop-blur-sm transition-all shadow-[0_4px_12px_rgba(0,0,0,0.3)] uppercase tracking-wider"
             >
               <span className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5" />
+                <Sparkles className="w-5 h-5 drop-shadow-[0_0_6px_rgba(177,182,124,0.6)]" />
                 Learn More
               </span>
             </motion.button>

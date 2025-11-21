@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Gamepad2, Users, Trophy, LucideIcon } from "lucide-react";
+import { Swords, Users, Trophy, LucideIcon } from "lucide-react";
 
 const stats = [
   {
-    icon: Gamepad2,
+    icon: Swords,
     label: "Minigames Planned",
     value: "20+",
     color: "primary",
@@ -36,15 +36,24 @@ export function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`flex flex-col items-center gap-4 p-8 bg-neutral/50 rounded-2xl border border-white/10 backdrop-blur-sm hover:border-${stat.color}/50 transition-all group`}
+              className={`flex flex-col items-center gap-4 p-8 bg-neutral/50 border-2 border-${stat.color}/40 backdrop-blur-sm hover:border-${stat.color}/70 transition-all group shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_4px_12px_rgba(0,0,0,0.4)] relative overflow-hidden`}
             >
+              {/* Corner decorations */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent/60" />
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-accent/60" />
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-accent/60" />
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-accent/60" />
+
               <stat.icon
-                className={`w-12 h-12 text-${stat.color} group-hover:scale-110 transition-transform`}
+                className={`w-14 h-14 text-${stat.color} group-hover:scale-110 transition-transform drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]`}
               />
-              <h3 className="text-4xl font-bold text-white text-center">
+              <h3
+                className="text-4xl font-black text-white text-center drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
+                style={{ fontFamily: "var(--font-cinzel)" }}
+              >
                 {stat.value}
               </h3>
-              <p className="text-white/60 uppercase tracking-wider text-sm">
+              <p className="text-white/70 uppercase tracking-[0.2em] text-xs font-bold">
                 {stat.label}
               </p>
             </motion.div>

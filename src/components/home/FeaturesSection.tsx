@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Gamepad2, Users, Trophy, Zap, LucideIcon } from "lucide-react";
+import { Swords, Users, Trophy, Zap, LucideIcon, Shield } from "lucide-react";
 
 interface Feature {
   icon: LucideIcon;
@@ -16,7 +16,7 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    icon: Gamepad2,
+    icon: Swords,
     color: "primary",
     title: "Minigames That Matter",
     description:
@@ -125,31 +125,31 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
                 feature.color
               }/30 to-${
                 index === 1 ? "tertiary" : "secondary"
-              }/30 rounded-2xl blur-2xl group-hover:blur-3xl transition-all`}
+              }/30 blur-2xl group-hover:blur-3xl transition-all`}
             />
             <div
-              className={`relative w-full h-[350px] rounded-2xl border-4 border-dashed border-${feature.color}/40 flex items-center justify-center bg-neutral/80 backdrop-blur-sm overflow-hidden`}
+              className={`relative w-full h-[350px] border-4 border-${feature.color}/40 flex items-center justify-center bg-neutral/80 backdrop-blur-sm overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.4),0_8px_20px_rgba(0,0,0,0.5)]`}
             >
               <div className="text-center z-10">
-                <p className="text-white font-bold text-xl">
+                <p className="text-white font-bold text-xl uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                   {feature.imageName}
                 </p>
-                <p className="text-white/60 text-sm mt-2">
+                <p className="text-white/60 text-sm mt-2 uppercase tracking-widest">
                   {feature.imageCaption}
                 </p>
               </div>
               {/* Decorative corner elements */}
               <div
-                className={`absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-${feature.color}`}
+                className={`absolute top-2 left-2 w-10 h-10 border-t-4 border-l-4 border-${feature.color}/80`}
               />
               <div
-                className={`absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-${feature.color}`}
+                className={`absolute top-2 right-2 w-10 h-10 border-t-4 border-r-4 border-${feature.color}/80`}
               />
               <div
-                className={`absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-${feature.color}`}
+                className={`absolute bottom-2 left-2 w-10 h-10 border-b-4 border-l-4 border-${feature.color}/80`}
               />
               <div
-                className={`absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-${feature.color}`}
+                className={`absolute bottom-2 right-2 w-10 h-10 border-b-4 border-r-4 border-${feature.color}/80`}
               />
             </div>
           </motion.div>
@@ -163,15 +163,20 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
             viewport={{ once: true }}
             className="flex items-center gap-3 mb-6"
           >
-            <feature.icon className={`w-10 h-10 text-${feature.color}`} />
+            <feature.icon
+              className={`w-12 h-12 text-${feature.color} drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]`}
+            />
             <div
-              className={`h-px flex-1 bg-linear-to-r from-${feature.color} to-transparent`}
+              className={`h-0.5 flex-1 bg-linear-to-r from-${feature.color} to-transparent shadow-[0_0_8px_rgba(190,95,87,0.4)]`}
             />
           </motion.div>
-          <h2 className="text-5xl font-black mb-6 bg-linear-to-r from-white via-white to-white/60 bg-clip-text text-transparent pb-2 leading-tight">
+          <h2
+            className="text-5xl font-black mb-6 bg-linear-to-r from-white via-white to-white/60 bg-clip-text text-transparent pb-2 leading-tight uppercase tracking-wide drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
+            style={{ fontFamily: "var(--font-cinzel)" }}
+          >
             {feature.title}
           </h2>
-          <p className="text-white/70 text-lg leading-relaxed mb-6">
+          <p className="text-white/80 text-lg leading-relaxed mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
             {feature.description}
           </p>
           <ul className="space-y-3">
@@ -182,10 +187,12 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex items-center gap-3 text-white/60"
+                className="flex items-center gap-3 text-white/70"
               >
-                <Zap className={`w-5 h-5 text-${feature.color}`} />
-                <span>{item}</span>
+                <Shield
+                  className={`w-5 h-5 text-${feature.color} drop-shadow-[0_0_6px_rgba(190,95,87,0.4)]`}
+                />
+                <span className="tracking-wide">{item}</span>
               </motion.li>
             ))}
           </ul>
