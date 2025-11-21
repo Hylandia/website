@@ -1,0 +1,31 @@
+name: Build Check
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  verify-build:
+    name: 🔍 Verify Build
+    runs-on: ubuntu-latest
+    environment: verify
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Install deps
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      # Build app without secrets (NODE_ENV=verify skips validation)
+      - name: Build Next.js app
+        env:
+          NODE_ENV: verify
+        run: npm run build

@@ -43,9 +43,11 @@ function loadEnv() {
 
 const envVars = loadEnv();
 
+const isVerify = (process.env.NODE_ENV as string) === "verify";
+
 const envSchema = z.object({
   NODE_ENV: z
-    .enum(["development", "production", "test"])
+    .enum(["development", "production", "test", "verify"])
     .default("development"),
 
   DATABASE_URI: z.string(),
@@ -56,18 +58,22 @@ const envSchema = z.object({
   JWT_EXPIRY: z.string().default("30d"),
 });
 
-try {
-  envSchema.parse(envVars);
-} catch (error) {
-  if (error instanceof z.ZodError) {
-    console.error(
-      "❌ Invalid environment variables:",
-      ZodUtils.FormatIssuesAsMessage(error.issues)
-    );
-    process.exit(1);
+if (!isVerify) {
+  try {
+    envSchema.parse(envVars);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error(
+        "❌ Invalid environment variables:",
+        ZodUtils.FormatIssuesAsMessage(error.issues)
+      );
+      process.exit(1);
+    }
   }
 }
 
-export const env = envSchema.parse(envVars);
+export const env = isVerify
+  ? (envVars as z.infer<typeof envSchema>)
+  : envSchema.parse(envVars);
 
 export type Env = z.infer<typeof envSchema>;
