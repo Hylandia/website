@@ -100,18 +100,6 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
               </span>
             </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex items-center gap-3 bg-accent/10 px-6 py-2 rounded-full border border-accent/30"
-            >
-              <Crown className="w-5 h-5 text-accent" />
-              <p className="text-accent font-semibold text-sm">
-                In Development • Launches with Hytale
-              </p>
-            </motion.div>
-
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

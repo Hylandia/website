@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Swords } from "lucide-react";
 import Link from "next/link";
@@ -25,7 +25,7 @@ import { RegisterForm } from "@/components/auth/RegisterForm";
 import { SocialLogin } from "@/components/auth/SocialLogin";
 import { EmailVerification } from "@/components/auth/EmailVerification";
 
-export default function AuthPage() {
+function AuthPageContent() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -337,5 +337,21 @@ export default function AuthPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AuthPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-neutral">
+          <div className="animate-spin">
+            <Swords className="w-8 h-8 text-primary" />
+          </div>
+        </div>
+      }
+    >
+      <AuthPageContent />
+    </Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import {
   Swords,
@@ -22,7 +22,7 @@ interface OAuthParams {
   state?: string;
 }
 
-export default function OAuthAuthorizePage() {
+function OAuthAuthorizeContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { isSignedIn, isLoaded } = useAuth();
@@ -339,5 +339,21 @@ export default function OAuthAuthorizePage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function OAuthAuthorizePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-neutral">
+          <div className="animate-spin">
+            <Swords className="w-8 h-8 text-primary" />
+          </div>
+        </div>
+      }
+    >
+      <OAuthAuthorizeContent />
+    </Suspense>
   );
 }
