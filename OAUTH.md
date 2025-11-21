@@ -25,16 +25,37 @@ GET /oauth/authorize
 ### Example Authorization URL
 
 ```
-https://hylandia.net/oauth/authorize?client_id=my-app&redirect_uri=https://myapp.com/callback&response_type=token&scope=user:read user:stats&state=random_string_here
+https://hylandia.net/oauth/authorize?client_id=my-app&redirect_uri=https://myapp.com/callback&response_type=token&scope=user:read:email user:stats&state=random_string_here
 ```
 
 ## Scopes
 
-| Scope                 | Description                                      |
-| --------------------- | ------------------------------------------------ |
-| `user:read` or `user` | Access basic profile information and email       |
-| `user:stats`          | Access game statistics (wins, losses, level, XP) |
-| `user:preferences`    | Access user preferences                          |
+OAuth scopes control what data and actions a third-party application can access. Multiple scopes can be requested by separating them with spaces.
+
+| Scope              | Description                                               |
+| ------------------ | --------------------------------------------------------- |
+| `user:read`        | Access basic profile information (username, display name) |
+| `user:read:email`  | Access user email address                                 |
+| `user:read:rbac`   | Access user role and permissions                          |
+| `user`             | Full user access - grants all `user:*` permissions        |
+| `user:stats`       | Access game statistics (wins, losses, level, XP)          |
+| `user:preferences` | Access user preferences (notifications, theme, etc.)      |
+
+### Scope Hierarchy
+
+- The `user` scope is a special scope that grants **full access** to all `user:*` permissions
+- **Parent-child relationship**: Having a child scope (e.g., `user:read:email`) grants access when a parent scope (e.g., `user:read`) is required
+  - Example: If you have `user:read:email`, you can pass `user:read` assertions
+  - However, you'll only get email data, not all data that `user:read` would normally grant
+- `user:read` **by itself** grants basic profile access but NOT email or RBAC information
+- For email access specifically, you must request `user:read:email`
+- For role/permissions access specifically, you must request `user:read:rbac`
+
+**Important**: The hierarchy works for **assertions** (permission checks) but **NOT for data access**. If you only have `user:read:email`, you pass `user:read` checks, but filtering still respects your specific scopes.
+
+### Default Scope
+
+If no scope is specified, the default scope is `user:read`.
 
 ## Response Types
 
@@ -135,7 +156,7 @@ const params = new URLSearchParams({
   client_id: "my-app",
   redirect_uri: "https://myapp.com/callback",
   response_type: "token",
-  scope: "user:read user:stats",
+  scope: "user:read:email user:stats user:preferences",
   state: generateRandomState(),
 });
 
@@ -183,7 +204,7 @@ params = {
     'client_id': 'my-app',
     'redirect_uri': 'https://myapp.com/callback',
     'response_type': 'code',
-    'scope': 'user:read user:stats',
+    'scope': 'user:read:email user:stats',
     'state': generate_random_state(),
 }
 
@@ -211,14 +232,26 @@ stats = requests.get(
 ).json()
 ```
 
+## Scope-Based Data Filtering
+
+API responses are automatically filtered based on the scopes granted to your OAuth token. For example:
+
+- Without `user:read:email` scope, the `email` field will be omitted from user data
+- Without `user:read:rbac` scope, the `role` and `permissions` fields will be omitted
+- Without `user:stats` scope, game statistics endpoints will return a 403 Forbidden error
+
+If you request data that requires a scope you don't have, the API will return a `403 Forbidden` error with a message indicating which scope is required.
+
 ## Security Best Practices
 
 1. **Always use HTTPS** for redirect URIs in production
 2. **Validate the state parameter** to prevent CSRF attacks
 3. **Store tokens securely** (e.g., httpOnly cookies, secure storage)
-4. **Use appropriate scopes** - only request what you need
-5. **Handle token expiration** - tokens expire after 30 days by default
-6. **Validate redirect_uri** on your server to prevent open redirect vulnerabilities
+4. **Use appropriate scopes** - only request what you need (principle of least privilege)
+5. **Request specific scopes** - use `user:read:email` instead of `user` if you only need email
+6. **Handle token expiration** - tokens expire after 30 days by default
+7. **Validate redirect_uri** on your server to prevent open redirect vulnerabilities
+8. **Handle 403 errors gracefully** - check if you have the required scope before making requests
 
 ## Token Lifespan
 

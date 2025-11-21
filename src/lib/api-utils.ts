@@ -216,6 +216,7 @@ export interface AuthContext {
   username?: string;
   role?: string;
   permissions?: Set<string>;
+  scope?: string;
 }
 
 export async function withAPIHandler<T>(
@@ -266,6 +267,7 @@ export async function withAPIHandler<T>(
               username: payload.username,
               role: payload.role,
               permissions: new Set(getUserEffectivePermissions(payload) || []),
+              scope: payload.scope,
             };
           }
         } catch (error: any) {

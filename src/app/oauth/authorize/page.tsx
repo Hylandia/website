@@ -75,6 +75,9 @@ export default function OAuthAuthorizePage() {
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          scope: params.scope || "user:read",
+        }),
       });
 
       if (!response.ok) {
@@ -132,15 +135,31 @@ export default function OAuthAuthorizePage() {
     const scopes = scope.split(" ");
     const permissions: string[] = [];
 
-    if (scopes.includes("user:read") || scopes.includes("user")) {
-      permissions.push("View your basic profile information");
+    if (scopes.includes("user")) {
+      permissions.push("Full access to your user profile");
+      permissions.push("View your email address");
+      permissions.push("View your role and permissions");
+      permissions.push("View your game statistics");
+      permissions.push("View your preferences");
+      return permissions;
+    }
+
+    if (scopes.includes("user:read")) {
+      permissions.push(
+        "View your basic profile information (username, display name)"
+      );
+    }
+    if (scopes.includes("user:read:email")) {
       permissions.push("View your email address");
     }
-    if (scopes.includes("user:stats") || scopes.includes("user")) {
-      permissions.push("View your game statistics");
+    if (scopes.includes("user:read:rbac")) {
+      permissions.push("View your role and permissions");
+    }
+    if (scopes.includes("user:stats")) {
+      permissions.push("View your game statistics (wins, losses, level, XP)");
     }
     if (scopes.includes("user:preferences")) {
-      permissions.push("View your preferences");
+      permissions.push("View and modify your preferences");
     }
 
     return permissions.length > 0

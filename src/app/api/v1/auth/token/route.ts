@@ -15,12 +15,15 @@ export const POST = (request: Request) =>
       ensureAuth: false,
       request,
     },
-    async () => {
+    async (req) => {
       const currentAuth = await auth();
 
       if (!currentAuth.userId) {
         throw new Errors.Unauthorized("Not authenticated");
       }
+
+      const body = await req.json().catch(() => ({}));
+      const requestedScope = body.scope || "user:read";
 
       const client = await clerkClient();
       const clerkUser = await client.users.getUser(currentAuth.userId);
@@ -36,6 +39,7 @@ export const POST = (request: Request) =>
           displayName: `${user.firstName || ""} ${user.lastName || ""}`.trim(),
           role: user.role,
           type: "oauth",
+          scope: requestedScope,
         },
         env.JWT_SECRET,
         {
@@ -49,6 +53,8 @@ export const POST = (request: Request) =>
       return Responses.Success({
         token,
         expiresIn: env.JWT_EXPIRY,
+        scope: requestedScope,
+
         user: {
           _id: user._id?.toString(),
           clerkId: user.clerkId,
