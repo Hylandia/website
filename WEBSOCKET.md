@@ -20,7 +20,7 @@ socketServer.on("chat:message", async (client, data) => {
 ### Client Usage (React Hook - Recommended)
 
 ```typescript
-import { useSocket } from "@/lib/socket/example-client";
+import { useSocket } from "@/lib/socket/useSocket";
 
 function MyComponent() {
   // Automatically uses Clerk session token
@@ -30,19 +30,18 @@ function MyComponent() {
   useEffect(() => {
     if (!connected) return;
 
-    socket.on("chat:message", (data) => {
-      console.log("New message:", data);
+    socket.on("user:status", (data) => {
+      console.log("User status:", data);
     });
 
-    return () => socket.off("chat:message");
+    return () => socket.off("user:status");
   }, [socket, connected]);
 
   // Emit events
-  const sendMessage = () => {
-    socket.emit("chat:message", {
-      channelId: "general",
-      message: "Hello!",
+  const updateStatus = () => {
+    socket.emit("user:status", {
       userId: "user-123",
+      status: "online",
     });
   };
 
@@ -76,7 +75,7 @@ function MyComponent() {
 ### OAuth Token Usage (Third-Party Apps)
 
 ```typescript
-import { useSocket } from "@/lib/socket/example-client";
+import { useSocket } from "@/lib/socket/useSocket";
 
 function ThirdPartyComponent({ oauthToken }: { oauthToken: string }) {
   // Use OAuth token instead of Clerk
@@ -171,18 +170,18 @@ socketServer.on("chat:message", async (client, data) => {
 ### Register Handlers
 
 ```typescript
-socketServer.on("chat:message", async (client, data) => {
-  // Handle message
+socketServer.on("user:status", async (client, data) => {
+  // Handle status update
 });
 ```
 
 ### Broadcast to All
 
 ```typescript
-socketServer.broadcast("chat:message", {
-  channelId: "general",
-  message: "Hello everyone!",
+socketServer.broadcast("user:status", {
   userId: "user-123",
+  status: "online",
+  timestamp: Date.now(),
 });
 ```
 
@@ -199,9 +198,53 @@ socketServer.broadcast(
 ### Send to Specific User
 
 ```typescript
-socketServer.sendToUser(userId, "notification", {
-  message: "You have a new message",
+socketServer.sendToUser(userId, "game:state", {
+  gameId: "game-123",
+  state: { status: "ready" },
 });
+```
+
+## 🚨 Error Handling
+
+### Client-Specific Errors
+
+Errors caused by a client are sent only to that client:
+
+```typescript
+socketServer.on("game:join", async (client, data) => {
+  if (!client.authenticated) {
+    socketServer.sendError(client, {
+      code: "UNAUTHORIZED",
+      message: "Must be authenticated to join games",
+    });
+    return;
+  }
+  // ... handle join
+});
+```
+
+### Runtime Error Broadcasting
+
+Broadcast errors to all authenticated clients:
+
+```typescript
+import { handleRuntimeError } from "@/lib/socket";
+
+// From anywhere in your application
+handleRuntimeError(new Error("Database connection lost"));
+// All connected clients receive error notification
+```
+
+### Client-Side Error Handling
+
+The `useSocket` hook automatically handles errors:
+
+```typescript
+const { socket, connected, error } = useSocket();
+
+if (error) {
+  return <div className="text-red-500">Error: {error}</div>;
+}
 ```
 
 ## 🛡️ Middlewares
@@ -268,7 +311,7 @@ export interface SocketEvents {
 }
 ```
 
-2. Register handler in `example-server.ts`:
+2. Register handler in `handlers.ts`:
 
 ```typescript
 socketServer.on("my:event", async (client, data) => {
@@ -294,6 +337,7 @@ socket.on("my:event", (data) => {
 - `use(middleware)` - Add middleware
 - `send(client, message)` - Send to specific client
 - `sendError(client, error)` - Send error to client
+- `broadcastError(error)` - Broadcast error to all authenticated clients
 - `broadcast(event, data, filter?)` - Broadcast to all/filtered clients
 - `sendToUser(userId, event, data)` - Send to specific user
 - `getClient(clientId)` - Get client by ID
@@ -320,7 +364,7 @@ src/lib/socket/
 ├── middlewares.ts        # Built-in middlewares
 ├── index.ts              # Exports
 ├── handlers.ts           # Server-side event handlers
-└── example-client.tsx    # Client-side React hook
+└── useSocket.tsx         # Client-side React hook
 ```
 
 ## 🚀 Running
