@@ -116,7 +116,7 @@ export default function GameStatsPage() {
   return (
     <>
       {/* Breadcrumb */}
-      <div className="mb-6 text-sm text-neutral-400">
+      <div className="mb-6 text-sm text-neutral-400 uppercase tracking-wider">
         <Link href="/" className="hover:text-primary transition-colors">
           Home
         </Link>
@@ -134,10 +134,10 @@ export default function GameStatsPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-neutral-800/80 backdrop-blur-xl border border-primary/20 rounded-2xl p-4 sm:p-8 shadow-2xl"
+        className="bg-neutral-800/80 backdrop-blur-xl border-2 border-primary/20 p-4 sm:p-8 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_20px_25px_-5px_rgba(0,0,0,0.7)]"
       >
         {/* Mock Data Banner */}
-        <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+        <div className="mb-6 p-4 bg-yellow-500/10 border-2 border-yellow-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
           <p className="text-yellow-400 text-sm">
             <strong>⚠️ Mock Design:</strong> This is a preview interface. Live
             data and functionality will be active upon server release.
@@ -145,9 +145,9 @@ export default function GameStatsPage() {
         </div>
 
         <div className="flex items-center gap-3 mb-6 sm:mb-8">
-          <Star className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+          <Star className="w-6 h-6 sm:w-8 sm:h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white font-cinzel uppercase tracking-wider">
               Game Statistics
             </h1>
             <p className="text-xs sm:text-sm text-neutral-400 mt-1">
@@ -214,8 +214,8 @@ export default function GameStatsPage() {
         </div>
 
         {/* Win/Loss Breakdown */}
-        <div className="border-t border-neutral-700/50 pt-6">
-          <h3 className="text-lg font-semibold text-white mb-4">
+        <div className="border-t-2 border-neutral-700/50 pt-6">
+          <h3 className="text-lg font-semibold text-white font-cinzel uppercase tracking-wider mb-4">
             Performance Breakdown
           </h3>
 
@@ -274,9 +274,11 @@ export default function GameStatsPage() {
 
         {/* Empty State */}
         {stats.totalGamesPlayed === 0 && (
-          <div className="text-center py-8 mt-8 border-t border-neutral-700/50">
+          <div className="text-center py-8 mt-8 border-t-2 border-neutral-700/50">
             <Users className="w-12 h-12 mx-auto mb-3 text-neutral-500" />
-            <p className="text-neutral-400 mb-2">No games played yet</p>
+            <p className="text-neutral-400 mb-2 font-semibold uppercase tracking-wide">
+              No games played yet
+            </p>
             <p className="text-sm text-neutral-500">
               Start playing to see your statistics here!
             </p>

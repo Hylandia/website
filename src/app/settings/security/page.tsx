@@ -83,32 +83,40 @@ export default function SecurityPage() {
     <>
       {/* Breadcrumb */}
       <div className="mb-6 text-sm text-neutral-400">
-        <Link href="/" className="hover:text-primary transition-colors">
+        <Link
+          href="/"
+          className="hover:text-primary transition-colors uppercase tracking-wider font-semibold"
+        >
           Home
         </Link>
         <span className="mx-2">/</span>
         <Link
           href="/settings/account"
-          className="hover:text-primary transition-colors"
+          className="hover:text-primary transition-colors uppercase tracking-wider font-semibold"
         >
           Settings
         </Link>
         <span className="mx-2">/</span>
-        <span className="text-white">Security & Sessions</span>
+        <span className="text-white uppercase tracking-wider font-semibold">
+          Security & Sessions
+        </span>
       </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-neutral-800/80 backdrop-blur-xl border border-primary/20 rounded-2xl p-4 sm:p-8 shadow-2xl"
+        className="bg-neutral-800/80 backdrop-blur-xl border-2 border-primary/40 p-4 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
       >
         <div className="flex items-center gap-3 mb-6 sm:mb-8">
-          <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+          <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white">
+            <h1
+              className="text-2xl sm:text-3xl font-black text-white uppercase tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
+              style={{ fontFamily: "var(--font-cinzel)" }}
+            >
               Security & Sessions
             </h1>
-            <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+            <p className="text-xs sm:text-sm text-neutral-400 mt-1 tracking-wide">
               Manage your active sessions and security settings
             </p>
           </div>
@@ -116,7 +124,7 @@ export default function SecurityPage() {
 
         {/* Active Sessions */}
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-white mb-4">
+          <h2 className="text-lg font-bold text-white mb-4 uppercase tracking-wider">
             Active Sessions
           </h2>
 
@@ -130,22 +138,22 @@ export default function SecurityPage() {
               return (
                 <div
                   key={session.id}
-                  className="p-3 sm:p-4 bg-neutral-900/50 border border-neutral-700/50 rounded-lg"
+                  className="p-3 sm:p-4 bg-neutral-900/50 border-2 border-neutral-700/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]"
                 >
                   <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-0">
                     <div className="flex items-start gap-3 sm:gap-4 flex-1 w-full">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center shrink-0">
-                        <DeviceIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 border-2 border-primary/40 flex items-center justify-center shrink-0">
+                        <DeviceIcon className="w-5 h-5 sm:w-6 sm:h-6 text-primary drop-shadow-[0_0_6px_rgba(190,95,87,0.4)]" />
                       </div>
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <p className="font-semibold text-white text-sm sm:text-base">
+                          <p className="font-bold text-white text-sm sm:text-base uppercase tracking-wide">
                             {session.latestActivity?.browserName ||
                               "Unknown Browser"}
                           </p>
                           {isCurrent && (
-                            <span className="px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full border border-green-500/30">
+                            <span className="px-2 py-0.5 text-xs bg-green-500/20 text-green-400 border-2 border-green-500/40 uppercase tracking-wider font-semibold">
                               Current
                             </span>
                           )}

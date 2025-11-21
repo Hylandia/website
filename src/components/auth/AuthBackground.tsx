@@ -13,48 +13,52 @@ export function AuthBackground() {
       <div className="absolute inset-0 bg-neutral/80" />
 
       <motion.div
-        className="absolute top-20 left-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+        className="absolute top-20 left-20 w-96 h-96 bg-primary/15 rounded-full blur-3xl"
+        style={{ willChange: "transform" }}
         animate={{
           x: [0, 100, 0],
           y: [0, 50, 0],
-          scale: [1, 1.2, 1],
+          scale: [1, 1.1, 1],
         }}
         transition={{
-          duration: 10,
+          duration: 15,
           repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
+          ease: "linear",
         }}
       />
       <motion.div
-        className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"
+        className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"
+        style={{ willChange: "transform" }}
         animate={{
           x: [0, -100, 0],
           y: [0, -50, 0],
-          scale: [1, 1.3, 1],
+          scale: [1, 1.15, 1],
         }}
         transition={{
-          duration: 12,
+          duration: 18,
           repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
+          ease: "linear",
         }}
       />
 
-      {[...Array(20)].map((_, i) => (
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-accent/40 rounded-full"
+          className="absolute w-1 h-1 bg-accent/25 rounded-full"
           style={{
             left: `${(i * 5) % 100}%`,
             top: `${(i * 7) % 100}%`,
+            willChange: "transform, opacity",
           }}
           animate={{
             y: [0, -20, 0],
-            opacity: [0.2, 0.6, 0.2],
+            opacity: [0.2, 0.5, 0.2],
           }}
           transition={{
-            duration: 3 + (i % 3),
+            duration: 4 + (i % 3),
             repeat: Number.POSITIVE_INFINITY,
             delay: i * 0.2,
+            ease: "linear",
           }}
         />
       ))}

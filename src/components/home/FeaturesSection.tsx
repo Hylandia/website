@@ -72,7 +72,9 @@ export function FeaturesSection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5 }}
+        style={{ willChange: "transform, opacity" }}
         className="max-w-3xl text-center -mb-8"
       >
         <p className="text-white/50 text-sm italic">
@@ -101,8 +103,9 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
     <motion.div
       initial={{ opacity: 0, x: xDirection }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      style={{ willChange: "transform, opacity" }}
       className="relative max-w-6xl w-full"
     >
       <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -114,10 +117,10 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
         >
           <motion.div
             whileHover={{
-              rotate: feature.order === "normal" ? 3 : -3,
-              scale: 1.05,
+              scale: 1.03,
             }}
-            transition={{ type: "spring", stiffness: 300 }}
+            transition={{ type: "tween", duration: 0.3 }}
+            style={{ willChange: "transform" }}
             className="relative group"
           >
             <div

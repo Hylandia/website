@@ -43,7 +43,7 @@ export default function PreferencesPage() {
   return (
     <>
       {/* Breadcrumb */}
-      <div className="mb-6 text-sm text-neutral-400">
+      <div className="mb-6 text-sm text-neutral-400 uppercase tracking-wider">
         <Link href="/" className="hover:text-primary transition-colors">
           Home
         </Link>
@@ -61,10 +61,10 @@ export default function PreferencesPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-neutral-800/80 backdrop-blur-xl border border-primary/20 rounded-2xl p-4 sm:p-8 shadow-2xl"
+        className="bg-neutral-800/80 backdrop-blur-xl border-2 border-primary/20 p-4 sm:p-8 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_20px_25px_-5px_rgba(0,0,0,0.7)]"
       >
         {/* Mock Data Banner */}
-        <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+        <div className="mb-6 p-4 bg-yellow-500/10 border-2 border-yellow-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
           <p className="text-yellow-400 text-sm">
             <strong>⚠️ Mock Design:</strong> This is a preview interface. Live
             data and functionality will be active upon server release.
@@ -72,9 +72,9 @@ export default function PreferencesPage() {
         </div>
 
         <div className="flex items-center gap-3 mb-6 sm:mb-8">
-          <Settings className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+          <Settings className="w-6 h-6 sm:w-8 sm:h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white font-cinzel uppercase tracking-wider">
               Preferences
             </h1>
             <p className="text-xs sm:text-sm text-neutral-400 mt-1">
@@ -86,14 +86,16 @@ export default function PreferencesPage() {
         {/* Notifications */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Bell className="w-5 h-5 text-primary" />
-            <h2 className="text-lg font-semibold text-white">Notifications</h2>
+            <Bell className="w-5 h-5 text-primary drop-shadow-[0_0_8px_rgba(190,95,87,0.5)]" />
+            <h2 className="text-lg font-semibold text-white font-cinzel uppercase tracking-wider">
+              Notifications
+            </h2>
           </div>
 
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border border-neutral-700/50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border-2 border-neutral-700/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
               <div>
-                <Label className="text-white text-sm">
+                <Label className="text-white text-sm font-semibold uppercase tracking-wide">
                   Email Notifications
                 </Label>
                 <p className="text-xs text-neutral-400 mt-1">
@@ -119,9 +121,11 @@ export default function PreferencesPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border border-neutral-700/50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border-2 border-neutral-700/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
               <div>
-                <Label className="text-white text-sm">Push Notifications</Label>
+                <Label className="text-white text-sm font-semibold uppercase tracking-wide">
+                  Push Notifications
+                </Label>
                 <p className="text-xs text-neutral-400 mt-1">
                   Get real-time notifications in your browser
                 </p>
@@ -145,9 +149,11 @@ export default function PreferencesPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border border-neutral-700/50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border-2 border-neutral-700/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
               <div>
-                <Label className="text-white text-sm">Game Updates</Label>
+                <Label className="text-white text-sm font-semibold uppercase tracking-wide">
+                  Game Updates
+                </Label>
                 <p className="text-xs text-neutral-400 mt-1">
                   Be notified about new features and events
                 </p>
@@ -173,9 +179,11 @@ export default function PreferencesPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border border-neutral-700/50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-neutral-900/50 border-2 border-neutral-700/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
               <div>
-                <Label className="text-white text-sm">Newsletter</Label>
+                <Label className="text-white text-sm font-semibold uppercase tracking-wide">
+                  Newsletter
+                </Label>
                 <p className="text-xs text-neutral-400 mt-1">
                   Receive monthly newsletters and announcements
                 </p>
@@ -202,16 +210,18 @@ export default function PreferencesPage() {
         </div>
 
         {/* Language */}
-        <div className="mb-8 pb-8 border-b border-neutral-700/50">
+        <div className="mb-8 pb-8 border-b-2 border-neutral-700/50">
           <div className="flex items-center gap-2 mb-4">
-            <Globe className="w-5 h-5 text-primary" />
-            <h2 className="text-lg font-semibold text-white">Language</h2>
+            <Globe className="w-5 h-5 text-primary drop-shadow-[0_0_8px_rgba(190,95,87,0.5)]" />
+            <h2 className="text-lg font-semibold text-white font-cinzel uppercase tracking-wider">
+              Language
+            </h2>
           </div>
 
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className="w-full p-3 bg-neutral-900/50 border border-neutral-700/50 rounded-lg text-white focus:outline-none focus:border-primary/50"
+            className="w-full p-3 bg-neutral-900/50 border-2 border-neutral-700/50 text-white focus:outline-none focus:border-primary/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] uppercase tracking-wide font-semibold"
           >
             <option value="en">English</option>
             <option value="es">Español</option>
@@ -224,14 +234,16 @@ export default function PreferencesPage() {
         {/* Theme */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Palette className="w-5 h-5 text-primary" />
-            <h2 className="text-lg font-semibold text-white">Theme</h2>
+            <Palette className="w-5 h-5 text-primary drop-shadow-[0_0_8px_rgba(190,95,87,0.5)]" />
+            <h2 className="text-lg font-semibold text-white font-cinzel uppercase tracking-wider">
+              Theme
+            </h2>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <button
               onClick={() => setTheme("dark")}
-              className={`p-4 border rounded-lg transition-all ${
+              className={`p-4 border-2 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] ${
                 theme === "dark"
                   ? "bg-neutral-900/80 border-primary/50"
                   : "bg-neutral-900/50 border-neutral-700/50 hover:border-neutral-600"
@@ -239,13 +251,15 @@ export default function PreferencesPage() {
             >
               <div className="flex flex-col items-center gap-2">
                 <Moon className="w-6 h-6 text-primary" />
-                <span className="text-white text-sm font-medium">Dark</span>
+                <span className="text-white text-sm font-bold uppercase tracking-wider">
+                  Dark
+                </span>
               </div>
             </button>
 
             <button
               onClick={() => setTheme("light")}
-              className={`p-4 border rounded-lg transition-all ${
+              className={`p-4 border-2 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] ${
                 theme === "light"
                   ? "bg-neutral-900/80 border-primary/50"
                   : "bg-neutral-900/50 border-neutral-700/50 hover:border-neutral-600"
@@ -253,7 +267,9 @@ export default function PreferencesPage() {
             >
               <div className="flex flex-col items-center gap-2">
                 <Sun className="w-6 h-6 text-primary" />
-                <span className="text-white text-sm font-medium">Light</span>
+                <span className="text-white text-sm font-bold uppercase tracking-wider">
+                  Light
+                </span>
               </div>
             </button>
           </div>
