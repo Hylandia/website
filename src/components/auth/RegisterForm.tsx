@@ -27,7 +27,7 @@ export function RegisterForm({
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-white/80 text-sm font-medium mb-2">
+          <label className="block text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">
             First Name
           </label>
           <div className="relative">
@@ -35,7 +35,7 @@ export function RegisterForm({
             <Input
               type="text"
               placeholder="John"
-              className="w-full bg-white/5 border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto"
+              className="w-full bg-white/5 border-2 border-white/20 py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent"
               {...form.register("firstName")}
             />
           </div>
@@ -47,7 +47,7 @@ export function RegisterForm({
         </div>
 
         <div>
-          <label className="block text-white/80 text-sm font-medium mb-2">
+          <label className="block text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">
             Last Name
           </label>
           <div className="relative">
@@ -55,7 +55,7 @@ export function RegisterForm({
             <Input
               type="text"
               placeholder="Doe"
-              className="w-full bg-white/5 border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto"
+              className="w-full bg-white/5 border-2 border-white/20 py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent"
               {...form.register("lastName")}
             />
           </div>
@@ -142,7 +142,7 @@ export function RegisterForm({
       </div>
 
       <div>
-        <label className="block text-white/80 text-sm font-medium mb-2">
+        <label className="block text-white/90 text-sm font-bold mb-2 uppercase tracking-wider">
           Confirm Password
         </label>
         <div className="relative">
@@ -150,7 +150,7 @@ export function RegisterForm({
           <Input
             type={showPassword ? "text" : "password"}
             placeholder="••••••••"
-            className="w-full bg-white/5 border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto"
+            className="w-full bg-white/5 border-2 border-white/20 py-3 pl-12 pr-4 text-white placeholder:text-white/30 h-auto shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:border-accent"
             {...form.register("confirmPassword")}
           />
         </div>
@@ -163,19 +163,25 @@ export function RegisterForm({
 
       <div className="flex items-start gap-3">
         <Checkbox
-          className="border-white/20 bg-white/5 mt-0.5"
+          className="border-2 border-white/30 bg-white/5 mt-0.5"
           checked={form.watch("terms")}
           onCheckedChange={(checked) =>
             form.setValue("terms", checked as boolean)
           }
         />
-        <label className="text-white/70 text-sm leading-snug">
+        <label className="text-white/80 text-sm leading-snug">
           I agree to the{" "}
-          <Link href="/terms" className="text-secondary hover:underline">
+          <Link
+            href="/terms"
+            className="text-secondary hover:underline font-semibold"
+          >
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href="/privacy" className="text-secondary hover:underline">
+          <Link
+            href="/privacy"
+            className="text-secondary hover:underline font-semibold"
+          >
             Privacy Policy
           </Link>
         </label>
@@ -191,7 +197,7 @@ export function RegisterForm({
         disabled={isLoading}
         whileHover={{ scale: isLoading ? 1 : 1.02 }}
         whileTap={{ scale: isLoading ? 1 : 0.98 }}
-        className="w-full bg-linear-to-r from-primary to-secondary hover:from-secondary hover:to-tertiary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 transition-all flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-linear-to-r from-primary to-secondary hover:from-secondary hover:to-tertiary text-white font-bold py-4 shadow-[inset_0_2px_0_rgba(255,255,255,0.2),0_6px_16px_rgba(0,0,0,0.4)] border-2 border-primary/40 transition-all flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider"
       >
         {isLoading ? "Creating Account..." : "Create Account"}
         {!isLoading && (
