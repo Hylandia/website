@@ -1,12 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface FloatingParticlesProps {
   count?: number;
 }
 
 export function FloatingParticles({ count = 30 }: FloatingParticlesProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {[...Array(count)].map((_, i) => (
