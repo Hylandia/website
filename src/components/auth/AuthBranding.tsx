@@ -12,14 +12,8 @@ export function AuthBranding() {
       transition={{ duration: 0.6 }}
       className="hidden md:flex flex-col gap-8"
     >
-      <Link href="/" className="flex items-center gap-3 group">
-        <Castle className="w-12 h-12 text-secondary group-hover:rotate-12 transition-transform drop-shadow-[0_0_10px_rgba(240,153,99,0.6)]" />
-        <h1
-          className="text-5xl font-black bg-linear-to-r from-secondary via-primary to-tertiary bg-clip-text text-transparent pb-2 leading-tight uppercase tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
-          style={{ fontFamily: "var(--font-cinzel-decorative)" }}
-        >
-          Hylandia
-        </h1>
+      <Link href="/" className="flex items-center group">
+        <img src="/media/banner.png" alt="Hylandia" className="h-16 w-auto" />
       </Link>
 
       <div className="space-y-6">

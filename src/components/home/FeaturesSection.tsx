@@ -193,7 +193,13 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
                 className="flex items-center gap-3 text-white/70"
               >
                 <div
-                  className={`w-2 h-2 rounded-full bg-${feature.color} drop-shadow-[0_0_6px_rgba(190,95,87,0.4)]`}
+                  className={`w-2 h-2 rounded-full drop-shadow-[0_0_6px_rgba(190,95,87,0.4)] ${
+                    feature.color === "primary"
+                      ? "bg-primary"
+                      : feature.color === "secondary"
+                      ? "bg-secondary"
+                      : "bg-accent"
+                  }`}
                 />
                 <span className="tracking-wide">{item}</span>
               </motion.li>

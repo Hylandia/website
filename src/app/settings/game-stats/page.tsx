@@ -145,7 +145,7 @@ export default function GameStatsPage() {
         </div>
 
         <div className="flex items-center gap-3 mb-6 sm:mb-8">
-          <Star className="w-6 h-6 sm:w-8 sm:h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
+          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-white font-cinzel uppercase tracking-wider">
               Game Statistics

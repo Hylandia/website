@@ -187,7 +187,7 @@ export default function AccountSettingsPage() {
         className="bg-neutral-800/80 backdrop-blur-xl border-2 border-primary/40 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
       >
         <div className="flex items-center gap-3 mb-8">
-          <Shield className="w-8 h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
+          <User className="w-8 h-8 text-primary drop-shadow-[0_0_10px_rgba(190,95,87,0.5)]" />
           <h1
             className="text-3xl font-black text-white uppercase tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
             style={{ fontFamily: "var(--font-cinzel)" }}
@@ -400,7 +400,7 @@ export default function AccountSettingsPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl flex items-start gap-3"
         >
-          <Shield className="w-5 h-5 text-yellow-400 mt-0.5" />
+          <User className="w-5 h-5 text-yellow-400 mt-0.5" />
           <div>
             <p className="text-yellow-400 font-semibold text-sm">
               Password Required for Account Changes

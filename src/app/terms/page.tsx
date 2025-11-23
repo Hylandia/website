@@ -12,7 +12,7 @@ export default function TermsPage() {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="https://i.imgur.com/OvtdZ7q.jpeg"
+          src="/media/backsplash.png"
           alt="Background"
           className="absolute inset-0 w-full h-full object-cover opacity-10"
         />

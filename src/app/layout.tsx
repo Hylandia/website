@@ -28,6 +28,35 @@ export const metadata: Metadata = {
   title: "Hylandia - A Minigames Server for Hytale",
   description:
     "A progressive minigames server where your progress actually means something. Launching shortly after Hytale.",
+  icons: {
+    icon: "/media/icon.png",
+    shortcut: "/media/icon.png",
+    apple: "/media/icon.png",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://hylandia.net",
+    title: "Hylandia - A Minigames Server for Hytale",
+    description:
+      "A progressive minigames server where your progress actually means something. Launching shortly after Hytale.",
+    siteName: "Hylandia",
+    images: [
+      {
+        url: "/media/banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Hylandia - A Minigames Server for Hytale",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hylandia - A Minigames Server for Hytale",
+    description:
+      "A progressive minigames server where your progress actually means something. Launching shortly after Hytale.",
+    images: ["/media/banner.png"],
+  },
+  metadataBase: new URL("https://hylandia.net"),
 };
 
 export default function RootLayout({
@@ -40,7 +69,7 @@ export default function RootLayout({
       <ReactQueryProvider>
         <html lang="en" className="dark">
           <body
-            className={`${cinzel.variable} ${medievalSharp.variable} ${cinzelDecorative.variable} overflow-x-hidden antialiased`}
+            className={`${cinzel.variable} ${medievalSharp.variable} ${cinzelDecorative.variable} overflow-x-hidden antialiased bg-neutral`}
           >
             <Navigation />
             <main className="min-h-screen">{children}</main>
