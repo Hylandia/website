@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Hylandia",
     images: [
       {
-        url: "/media/banner.png",
+        url: "https://hylandia.net/media/banner.png",
         width: 1200,
         height: 630,
         alt: "Hylandia - A Minigames Server for Hytale",
@@ -54,11 +54,10 @@ export const metadata: Metadata = {
     title: "Hylandia - A Minigames Server for Hytale",
     description:
       "A progressive minigames server where your progress actually means something. Launching shortly after Hytale.",
-    images: ["/media/banner.png"],
+    images: ["https://hylandia.net/media/banner.png"],
   },
   metadataBase: new URL("https://hylandia.net"),
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
