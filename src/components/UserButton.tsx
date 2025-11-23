@@ -8,9 +8,9 @@ import {
   Settings,
   LogOut,
   ChevronDown,
-  Link as LinkIcon,
+  Mail,
   Shield,
-  Gamepad2,
+  Trophy,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -113,7 +113,7 @@ export function UserButton() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
-                <Shield className="w-4 h-4" />
+                <User className="w-4 h-4" />
                 Account Settings
               </Link>
 
@@ -122,7 +122,7 @@ export function UserButton() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
-                <LinkIcon className="w-4 h-4" />
+                <Mail className="w-4 h-4" />
                 Connected Accounts
               </Link>
 
@@ -131,7 +131,7 @@ export function UserButton() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
-                <User className="w-4 h-4" />
+                <Shield className="w-4 h-4" />
                 Security & Sessions
               </Link>
 
@@ -149,7 +149,7 @@ export function UserButton() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
-                <Gamepad2 className="w-4 h-4" />
+                <Trophy className="w-4 h-4" />
                 Game Stats
               </Link>
             </div>

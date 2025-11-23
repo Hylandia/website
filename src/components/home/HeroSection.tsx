@@ -23,7 +23,7 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
         style={{ y: parallaxY }}
       >
         <img
-          src="https://i.imgur.com/OvtdZ7q.jpeg"
+          src="/media/backsplash.png"
           alt="Hylandia Background"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
@@ -76,7 +76,7 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
           </motion.div> */}
 
           <div className="flex flex-col gap-6 justify-center items-center">
-            <motion.h1
+            <motion.div
               initial={{ opacity: 0, y: -100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -85,25 +85,26 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
                 type: "spring",
                 stiffness: 50,
               }}
-              className="text-7xl md:text-9xl font-black text-white tracking-wider text-center relative"
-              style={{ fontFamily: "var(--font-cinzel-decorative)" }}
+              className="relative"
             >
-              <span className="relative inline-block drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                HYLANDIA
-                <motion.div
-                  className="absolute -inset-2 bg-linear-to-r from-primary/20 via-secondary/20 to-tertiary/20 blur-xl -z-10"
-                  style={{ willChange: "opacity" }}
-                  animate={{
-                    opacity: [0.5, 0.7, 0.5],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-              </span>
-            </motion.h1>
+              <img
+                src="/media/banner.png"
+                alt="Hylandia"
+                className="w-full max-w-2xl h-auto drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
+              />
+              <motion.div
+                className="absolute -inset-4 bg-linear-to-r from-primary/20 via-secondary/20 to-tertiary/20 blur-xl -z-10"
+                style={{ willChange: "opacity" }}
+                animate={{
+                  opacity: [0.5, 0.7, 0.5],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0 }}

@@ -13,18 +13,15 @@ export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 w-full z-50 bg-neutral backdrop-blur-md border-b-2 border-accent/40 shadow-[0_4px_12px_rgba(0,0,0,0.4)]">
+    <nav className="sticky top-0 w-full z-50 bg-neutral/5 backdrop-blur-md border-b-2 border-accent/40 shadow-[0_4px_12px_rgba(0,0,0,0.4)]">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div
-            className="flex items-center gap-3 text-2xl font-black cursor-pointer"
-            style={{ fontFamily: "var(--font-cinzel-decorative)" }}
-            onClick={() => router.push("/")}
-          >
-            <Castle className="w-7 h-7 text-primary drop-shadow-[0_0_8px_rgba(190,95,87,0.5)]" />
-            <span className="bg-linear-to-r from-secondary via-primary to-tertiary bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] tracking-wide">
-              HYLANDIA
-            </span>
+          <div className="cursor-pointer" onClick={() => router.push("/")}>
+            <img
+              src="/media/banner.png"
+              alt="Hylandia"
+              className="h-8 w-auto"
+            />
           </div>
 
           <div className="hidden md:flex items-center gap-8">

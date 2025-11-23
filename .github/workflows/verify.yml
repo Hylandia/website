@@ -28,4 +28,9 @@ jobs:
       - name: Build Next.js app
         env:
           NODE_ENV: verify
+          DATABASE_URI: ${{ secrets.DATABASE_URI }}
+          REDIS_URI: ${{ secrets.REDIS_URI }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: npm run build
