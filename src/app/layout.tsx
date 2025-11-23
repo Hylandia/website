@@ -5,6 +5,7 @@ import "./globals.css";
 import ClerkProvider from "@/providers/ClerkProvider";
 import ReactQueryProvider from "@/providers/QueryProvider";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -72,6 +73,7 @@ export default function RootLayout({
           >
             <Navigation />
             <main className="min-h-screen">{children}</main>
+            <Footer />
           </body>
         </html>
       </ReactQueryProvider>
