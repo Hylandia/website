@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Swords, Users, Trophy, Zap, LucideIcon, Shield } from "lucide-react";
+import { Swords, Users, Trophy, Zap, LucideIcon } from "lucide-react";
 
 interface Feature {
   icon: LucideIcon;
@@ -108,21 +108,21 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       style={{ willChange: "transform, opacity" }}
       className="relative max-w-6xl w-full"
     >
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <motion.div
+        whileHover={{
+          scale: 1.02,
+        }}
+        transition={{ type: "tween", duration: 0.3 }}
+        style={{ willChange: "transform" }}
+        className="grid md:grid-cols-2 gap-12 items-center"
+      >
         {/* Image */}
         <div
           className={`relative ${
             feature.order === "normal" ? "order-2 md:order-1" : ""
           }`}
         >
-          <motion.div
-            whileHover={{
-              scale: 1.03,
-            }}
-            transition={{ type: "tween", duration: 0.3 }}
-            style={{ willChange: "transform" }}
-            className="relative group"
-          >
+          <div className="relative group">
             <div
               className={`absolute inset-0 bg-linear-to-br from-${
                 feature.color
@@ -155,7 +155,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
                 className={`absolute bottom-2 right-2 w-10 h-10 border-b-4 border-r-4 border-${feature.color}/80`}
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Content */}
@@ -192,15 +192,15 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
                 transition={{ delay: i * 0.1 }}
                 className="flex items-center gap-3 text-white/70"
               >
-                <Shield
-                  className={`w-5 h-5 text-${feature.color} drop-shadow-[0_0_6px_rgba(190,95,87,0.4)]`}
+                <div
+                  className={`w-2 h-2 rounded-full bg-${feature.color} drop-shadow-[0_0_6px_rgba(190,95,87,0.4)]`}
                 />
                 <span className="tracking-wide">{item}</span>
               </motion.li>
             ))}
           </ul>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

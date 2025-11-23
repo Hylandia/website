@@ -8,7 +8,7 @@ import {
   Settings,
   LogOut,
   ChevronDown,
-  Mail,
+  Link as LinkIcon,
   Shield,
   Gamepad2,
 } from "lucide-react";
@@ -39,9 +39,7 @@ export function UserButton() {
   if (!user) return null;
 
   const displayName =
-    user.firstName && user.lastName
-      ? `${user.firstName} ${user.lastName}`
-      : user.username || user.emailAddresses[0]?.emailAddress || "User";
+    user.username || user.emailAddresses[0]?.emailAddress || "User";
 
   const email = user.emailAddresses[0]?.emailAddress;
 
@@ -66,7 +64,6 @@ export function UserButton() {
           <span className="text-sm font-bold text-white uppercase tracking-wider">
             {displayName}
           </span>
-          {email && <span className="text-xs text-neutral-400">{email}</span>}
         </div>
         <ChevronDown
           className={`w-4 h-4 text-neutral-400 transition-transform ${
@@ -103,7 +100,7 @@ export function UserButton() {
                     {displayName}
                   </p>
                   {email && (
-                    <p className="text-xs text-neutral-400 truncate">{email}</p>
+                    <span className="text-xs text-neutral-400">{email}</span>
                   )}
                 </div>
               </div>
@@ -116,7 +113,7 @@ export function UserButton() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
-                <User className="w-4 h-4" />
+                <Shield className="w-4 h-4" />
                 Account Settings
               </Link>
 
@@ -125,7 +122,7 @@ export function UserButton() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
-                <Mail className="w-4 h-4" />
+                <LinkIcon className="w-4 h-4" />
                 Connected Accounts
               </Link>
 
@@ -134,7 +131,7 @@ export function UserButton() {
                 onClick={() => setIsOpen(false)}
                 className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
               >
-                <Shield className="w-4 h-4" />
+                <User className="w-4 h-4" />
                 Security & Sessions
               </Link>
 

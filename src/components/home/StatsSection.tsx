@@ -32,10 +32,6 @@ export function StatsSection() {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
               style={{ willChange: "transform, opacity" }}
               className={`flex flex-col items-center gap-4 p-8 bg-neutral/50 border-2 border-${stat.color}/40 backdrop-blur-sm hover:border-${stat.color}/70 transition-all group shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_4px_12px_rgba(0,0,0,0.4)] relative overflow-hidden`}
             >
