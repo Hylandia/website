@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Sword, Crown, Sparkles, Copy, Check, Shield } from "lucide-react";
+import { Sword, Crown } from "lucide-react";
 
 interface HeroSectionProps {
   onCopyIP: () => void;
@@ -129,19 +129,13 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
             <motion.button
               type="button"
               onClick={onCopyIP}
-              whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0] }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="group relative px-12 py-4 font-bold cursor-pointer transition-all bg-linear-to-r from-primary to-secondary hover:from-secondary hover:to-tertiary flex items-center gap-2 shadow-[inset_0_2px_0_rgba(255,255,255,0.2),0_6px_16px_rgba(0,0,0,0.4)] border-2 border-primary/40 uppercase tracking-wider"
             >
-              <Shield className="w-5 h-5 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
               <span className="text-white text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
                 {copiedIP ? "Copied!" : "play.hylandia.net"}
               </span>
-              {copiedIP ? (
-                <Check className="w-5 h-5 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
-              ) : (
-                <Copy className="w-5 h-5 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" />
-              )}
               <motion.div
                 className="absolute inset-0 bg-white/20"
                 initial={{ scale: 0, opacity: 0 }}
@@ -156,10 +150,7 @@ export function HeroSection({ onCopyIP, copiedIP }: HeroSectionProps) {
               whileTap={{ scale: 0.95 }}
               className="px-12 py-4 font-bold cursor-pointer hover:bg-white/10 bg-white/5 border-2 border-accent/50 text-white backdrop-blur-sm transition-all shadow-[0_4px_12px_rgba(0,0,0,0.3)] uppercase tracking-wider"
             >
-              <span className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 drop-shadow-[0_0_6px_rgba(177,182,124,0.6)]" />
-                Learn More
-              </span>
+              <span className="flex items-center gap-2">Learn More</span>
             </motion.button>
           </motion.div>
         </div>

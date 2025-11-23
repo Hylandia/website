@@ -39,10 +39,7 @@ export function AuthBranding() {
         </p>
 
         <div className="grid gap-4 pt-4">
-          <motion.div
-            whileHover={{ x: 10 }}
-            className="flex items-center gap-4 text-white/80 group"
-          >
+          <div className="flex items-center gap-4 text-white/80 group">
             <div className="bg-primary/20 p-3 border-2 border-primary/40 group-hover:bg-primary/30 group-hover:border-primary/60 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
               <Sword className="w-6 h-6 text-primary drop-shadow-[0_0_8px_rgba(190,95,87,0.5)]" />
             </div>
@@ -54,12 +51,9 @@ export function AuthBranding() {
                 Level up and unlock rewards
               </p>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            whileHover={{ x: 10 }}
-            className="flex items-center gap-4 text-white/80 group"
-          >
+          <div className="flex items-center gap-4 text-white/80 group">
             <div className="bg-secondary/20 p-3 border-2 border-secondary/40 group-hover:bg-secondary/30 group-hover:border-secondary/60 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
               <Shield className="w-6 h-6 text-secondary drop-shadow-[0_0_8px_rgba(240,153,99,0.5)]" />
             </div>
@@ -71,7 +65,7 @@ export function AuthBranding() {
                 Climb the global leaderboards
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.div>

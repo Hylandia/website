@@ -11,18 +11,15 @@ interface SocialLoginProps {
 export function SocialLogin({ onSignIn, isLoading }: SocialLoginProps) {
   return (
     <div className="mt-8">
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t-2 border-white/20" />
-        </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-4 bg-neutral/40 text-white/60 uppercase tracking-wider font-bold">
-            Or continue with
-          </span>
-        </div>
+      <div className="flex items-center gap-4">
+        <div className="flex-1 border-t-2 border-white/20" />
+        <span className="text-white/60 uppercase tracking-wider font-bold text-sm">
+          Or continue with
+        </span>
+        <div className="flex-1 border-t-2 border-white/20" />
       </div>
 
-      <div className="mt-6 grid grid-cols-3 gap-4">
+      <div className="mt-6 flex flex-col md:grid md:grid-cols-3 gap-4">
         <motion.button
           type="button"
           onClick={() => onSignIn("oauth_google")}

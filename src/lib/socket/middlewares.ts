@@ -33,7 +33,6 @@ export function rateLimit(
     const now = Date.now();
     const requests = clientRequests.get(client.id) || [];
 
-    // Filter out old requests
     const recentRequests = requests.filter((time) => now - time < windowMs);
 
     if (recentRequests.length >= maxRequests) {
