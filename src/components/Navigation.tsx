@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Shield, Castle, Menu, X } from "lucide-react";
+import { Sword, Castle, Menu, X } from "lucide-react";
 import { UserButton } from "./UserButton";
 import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
@@ -57,7 +57,6 @@ export function Navigation() {
                 onClick={() => router.push("/auth")}
                 className="px-6 py-2 bg-linear-to-r from-primary to-secondary text-white font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_8px_rgba(0,0,0,0.3)] border-2 border-primary/30 uppercase tracking-wider text-sm flex items-center gap-2"
               >
-                <Shield className="w-4 h-4" />
                 Sign In
               </motion.button>
             )}
@@ -166,7 +165,6 @@ export function Navigation() {
                     }}
                     className="px-6 py-3 bg-linear-to-r from-primary to-secondary text-white font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_8px_rgba(0,0,0,0.3)] border-2 border-primary/30 uppercase tracking-wider text-sm flex items-center justify-center gap-2"
                   >
-                    <Shield className="w-4 h-4" />
                     Sign In
                   </motion.button>
                 )}
