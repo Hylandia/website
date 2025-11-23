@@ -114,9 +114,50 @@ export function Navigation() {
                 </a>
 
                 {isSignedIn ? (
-                  <div className="py-2">
-                    <UserButton />
-                  </div>
+                  <>
+                    <a
+                      href="/settings/account"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white/90 hover:text-secondary transition-colors uppercase tracking-wider text-sm font-semibold py-2"
+                    >
+                      Account Settings
+                    </a>
+                    <a
+                      href="/settings/connections"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white/90 hover:text-secondary transition-colors uppercase tracking-wider text-sm font-semibold py-2"
+                    >
+                      Connected Accounts
+                    </a>
+                    <a
+                      href="/settings/security"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white/90 hover:text-secondary transition-colors uppercase tracking-wider text-sm font-semibold py-2"
+                    >
+                      Security & Sessions
+                    </a>
+                    <a
+                      href="/settings/preferences"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white/90 hover:text-secondary transition-colors uppercase tracking-wider text-sm font-semibold py-2"
+                    >
+                      Preferences
+                    </a>
+                    <a
+                      href="/settings/game-stats"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white/90 hover:text-secondary transition-colors uppercase tracking-wider text-sm font-semibold py-2"
+                    >
+                      Game Stats
+                    </a>
+                    <a
+                      href="/logout"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-white/90 hover:text-primary transition-colors uppercase tracking-wider text-sm font-semibold py-2 border-t-2 border-accent/40 mt-2 pt-4"
+                    >
+                      Sign Out
+                    </a>
+                  </>
                 ) : (
                   <motion.button
                     type="button"
