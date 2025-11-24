@@ -269,7 +269,7 @@ function AuthPageContent() {
             transition={{ duration: 0.6 }}
             className="w-full"
           >
-            <div className="bg-white/5 backdrop-blur-xl border-2 border-white/20 p-6 md:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+            <div className="bg-white/5 backdrop-blur-xl border-2 border-white/20 p-6 md:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)] mt-16">
               <Link
                 href="/"
                 className="flex md:hidden items-center gap-3 mb-6 group"

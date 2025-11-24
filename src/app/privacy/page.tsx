@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export default function PrivacyPage() {
   const router = useRouter();
   return (
-    <div className="min-h-screen w-screen bg-neutral relative overflow-hidden">
+    <div className="min-h-screen  w-screen bg-neutral relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <img
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-16">
+      <div className="relative mt-16 z-10 max-w-4xl mx-auto px-6 py-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
