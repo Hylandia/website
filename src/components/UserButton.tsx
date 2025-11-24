@@ -1,8 +1,5 @@
-"use client";
-
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useUser, useAuth } from "@clerk/nextjs";
 import {
   User,
   Settings,
@@ -12,12 +9,12 @@ import {
   Shield,
   Trophy,
 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
+import { useUser } from "@/hooks/useUser";
 
 export function UserButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useUser();
-  const { signOut } = useAuth();
+  const { data: user } = useUser();
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,10 +35,7 @@ export function UserButton() {
 
   if (!user) return null;
 
-  const displayName =
-    user.username || user.emailAddresses[0]?.emailAddress || "User";
-
-  const email = user.emailAddresses[0]?.emailAddress;
+  const displayName = user.username || user.email || "User";
 
   return (
     <div className="relative" ref={menuRef}>
@@ -49,9 +43,9 @@ export function UserButton() {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-3 px-3 py-2 bg-neutral-800/50 border-2 border-neutral-700/50 hover:border-primary/50 transition-all duration-200 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]"
       >
-        {user.imageUrl ? (
+        {user.avatarUrl ? (
           <img
-            src={user.imageUrl}
+            src={user.avatarUrl}
             alt={displayName}
             className="w-8 h-8 border-2 border-primary/30"
           />
@@ -81,12 +75,11 @@ export function UserButton() {
             transition={{ duration: 0.15 }}
             className="absolute right-0 mt-2 w-72 bg-neutral-800 border-2 border-neutral-700/50 shadow-[0_8px_24px_rgba(0,0,0,0.6)] overflow-hidden z-50"
           >
-            {/* User Info Header */}
             <div className="p-4 bg-neutral-900/50 border-b-2 border-neutral-700/50">
               <div className="flex items-center gap-3">
-                {user.imageUrl ? (
+                {user.avatarUrl ? (
                   <img
-                    src={user.imageUrl}
+                    src={user.avatarUrl}
                     alt={displayName}
                     className="w-12 h-12 border-2 border-primary/30"
                   />
@@ -99,76 +92,68 @@ export function UserButton() {
                   <p className="text-sm font-bold text-white truncate uppercase tracking-wider">
                     {displayName}
                   </p>
-                  {email && (
-                    <span className="text-xs text-neutral-400">{email}</span>
-                  )}
                 </div>
               </div>
             </div>
 
-            {/* Menu Items */}
-            <div className="py-2">
+            <div className="p-2">
               <Link
-                href="/settings/account"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
+                to="/settings/account"
+                className="flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-neutral-700/50 transition-all duration-150"
               >
                 <User className="w-4 h-4" />
-                Account Settings
+                <span className="text-sm font-medium uppercase tracking-wider">
+                  Account
+                </span>
               </Link>
-
               <Link
-                href="/settings/connections"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
+                to="/settings/connections"
+                className="flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-neutral-700/50 transition-all duration-150"
               >
                 <Mail className="w-4 h-4" />
-                Connected Accounts
+                <span className="text-sm font-medium uppercase tracking-wider">
+                  Connections
+                </span>
               </Link>
-
               <Link
-                href="/settings/security"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
+                to="/settings/security"
+                className="flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-neutral-700/50 transition-all duration-150"
               >
                 <Shield className="w-4 h-4" />
-                Security & Sessions
+                <span className="text-sm font-medium uppercase tracking-wider">
+                  Security
+                </span>
               </Link>
-
               <Link
-                href="/settings/preferences"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
+                to="/settings/preferences"
+                className="flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-neutral-700/50 transition-all duration-150"
               >
                 <Settings className="w-4 h-4" />
-                Preferences
+                <span className="text-sm font-medium uppercase tracking-wider">
+                  Preferences
+                </span>
               </Link>
-
               <Link
-                href="/settings/game-stats"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-300 hover:bg-neutral-700/50 hover:text-white transition-colors font-semibold uppercase tracking-wide"
+                to="/settings/game-stats"
+                className="flex items-center gap-3 px-3 py-2 text-white/80 hover:text-white hover:bg-neutral-700/50 transition-all duration-150"
               >
                 <Trophy className="w-4 h-4" />
-                Game Stats
+                <span className="text-sm font-medium uppercase tracking-wider">
+                  Game Stats
+                </span>
               </Link>
-            </div>
 
-            {/* Divider */}
-            <div className="border-t-2 border-neutral-700/50"></div>
+              <div className="h-px bg-neutral-700/50 my-2" />
 
-            {/* Sign Out */}
-            <div className="py-2">
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  signOut();
-                }}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors w-full font-semibold uppercase tracking-wide"
+              <Link
+                to="/logout"
+                className="flex items-center gap-3 px-3 py-2 text-primary hover:text-primary/80 hover:bg-neutral-700/50 transition-all duration-150"
               >
                 <LogOut className="w-4 h-4" />
-                Sign Out
-              </button>
+                <span className="text-sm font-medium uppercase tracking-wider">
+                  Sign Out
+                </span>
+              </Link>
             </div>
           </motion.div>
         )}

@@ -1,12 +1,10 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { UseFormReturn } from "react-hook-form";
-import { SignUpFormData } from "@/schemas/auth.schema";
-import Link from "next/link";
+import type { UseFormReturn } from "react-hook-form";
+import type { SignUpFormData } from "@/schemas/auth.schema";
+import { Link } from "react-router-dom";
 
 interface RegisterFormProps {
   form: UseFormReturn<SignUpFormData>;
@@ -172,14 +170,14 @@ export function RegisterForm({
         <label className="text-white/80 text-sm leading-snug">
           I agree to the{" "}
           <Link
-            href="/terms"
+            to="/terms"
             className="text-secondary hover:underline font-semibold"
           >
             Terms of Service
           </Link>{" "}
           and{" "}
           <Link
-            href="/privacy"
+            to="/privacy"
             className="text-secondary hover:underline font-semibold"
           >
             Privacy Policy

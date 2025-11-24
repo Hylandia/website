@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Mail, AlertCircle } from "lucide-react";
-import { UseFormReturn } from "react-hook-form";
-import { VerifyCodeFormData } from "@/schemas/auth.schema";
-import { ClerkAPIError } from "@clerk/types";
+import type { UseFormReturn } from "react-hook-form";
+import type { VerifyCodeFormData } from "@/schemas/auth.schema";
 import {
   InputOTP,
   InputOTPGroup,
@@ -18,7 +17,7 @@ interface EmailVerificationProps {
   onBack: () => void;
   onResend: () => void;
   isLoading: boolean;
-  errors?: ClerkAPIError[];
+  errors?: Array<{ message: string; code?: string }>;
   email: string;
   code: string;
   setCode: (code: string) => void;
@@ -76,7 +75,7 @@ export function EmailVerification({
                 <InputOTP
                   maxLength={6}
                   value={code}
-                  onChange={(value) => {
+                  onChange={(value: string) => {
                     setCode(value);
                     form.setValue("code", value);
                   }}

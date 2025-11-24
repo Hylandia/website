@@ -1,7 +1,5 @@
-"use client";
-
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -88,7 +86,7 @@ export function Footer() {
               {legalLinks.map((link) => (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className="text-white/60 hover:text-secondary transition-colors text-sm uppercase tracking-wide"
                 >
                   {link.name}

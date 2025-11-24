@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { OAuthStrategy } from "@clerk/types";
 
 interface SocialLoginProps {
-  onSignIn: (strategy: OAuthStrategy) => void;
+  onSignIn: (provider: string) => void;
   isLoading: boolean;
 }
 
@@ -22,7 +21,7 @@ export function SocialLogin({ onSignIn, isLoading }: SocialLoginProps) {
       <div className="mt-6 flex flex-col md:grid md:grid-cols-3 gap-4">
         <motion.button
           type="button"
-          onClick={() => onSignIn("oauth_google")}
+          onClick={() => onSignIn("google")}
           disabled={isLoading}
           whileHover={{ scale: isLoading ? 1 : 1.02 }}
           whileTap={{ scale: isLoading ? 1 : 0.98 }}
@@ -38,7 +37,7 @@ export function SocialLogin({ onSignIn, isLoading }: SocialLoginProps) {
         </motion.button>
         <motion.button
           type="button"
-          onClick={() => onSignIn("oauth_github")}
+          onClick={() => onSignIn("github")}
           disabled={isLoading}
           whileHover={{ scale: isLoading ? 1 : 1.02 }}
           whileTap={{ scale: isLoading ? 1 : 0.98 }}
@@ -51,7 +50,7 @@ export function SocialLogin({ onSignIn, isLoading }: SocialLoginProps) {
         </motion.button>
         <motion.button
           type="button"
-          onClick={() => onSignIn("oauth_microsoft")}
+          onClick={() => onSignIn("microsoft")}
           disabled={isLoading}
           whileHover={{ scale: isLoading ? 1 : 1.02 }}
           whileTap={{ scale: isLoading ? 1 : 0.98 }}
