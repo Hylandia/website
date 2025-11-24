@@ -183,12 +183,12 @@ function OAuthAuthorizeContent() {
 
   if (error && !params.redirect_uri) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-neutral p-4">
+      <div className="min-h-screen  flex items-center justify-center bg-neutral p-4">
         <AuthBackground />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 max-w-md w-full"
+          className="relative z-10 mt-16 max-w-md w-full"
         >
           <div className="bg-neutral-800/80 backdrop-blur-xl border border-primary/20 rounded-2xl p-8">
             <div className="flex items-center gap-3 mb-4">

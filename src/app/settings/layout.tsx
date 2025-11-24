@@ -10,7 +10,7 @@ export default function SettingsLayout({
     <div className="min-h-screen bg-neutral">
       <AuthBackground />
 
-      <div className="min-h-[calc(100%-4rem)] relative z-10 w-full max-w-3xl mx-auto px-4 py-8 sm:px-6">
+      <div className="min-h-[calc(100%-4rem)] mt-16 relative z-10 w-full max-w-3xl mx-auto px-4 py-8 sm:px-6">
         {children}
       </div>
     </div>

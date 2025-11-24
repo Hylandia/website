@@ -13,7 +13,7 @@ export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 w-full z-50 bg-neutral/5 backdrop-blur-md border-b-2 border-accent/40 shadow-[0_4px_12px_rgba(0,0,0,0.4)]">
+    <nav className="fixed top-0 w-full z-50 bg-neutral/5 backdrop-blur-md border-b-2 border-accent/40 shadow-[0_4px_12px_rgba(0,0,0,0.4)]">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="cursor-pointer" onClick={() => router.push("/")}>

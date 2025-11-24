@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export default function TermsPage() {
   const router = useRouter();
   return (
-    <div className="min-h-screen w-screen bg-neutral relative overflow-hidden">
+    <div className="min-h-screen mt-16 w-screen bg-neutral relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <img
