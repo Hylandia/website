@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Settings, Bell } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function PreferencesSettingsPage() {
   const [notifications, setNotifications] = useState({
@@ -32,13 +33,12 @@ export default function PreferencesSettingsPage() {
           <div className="space-y-4">
             <label className="flex items-center justify-between p-4 bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
               <span className="text-white">Email Notifications</span>
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={notifications.email}
-                onChange={(e) =>
+                onCheckedChange={(v) =>
                   setNotifications({
                     ...notifications,
-                    email: e.target.checked,
+                    email: v as boolean,
                   })
                 }
                 className="w-5 h-5"
@@ -46,24 +46,22 @@ export default function PreferencesSettingsPage() {
             </label>
             <label className="flex items-center justify-between p-4 bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
               <span className="text-white">Push Notifications</span>
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={notifications.push}
-                onChange={(e) =>
-                  setNotifications({ ...notifications, push: e.target.checked })
+                onCheckedChange={(v) =>
+                  setNotifications({ ...notifications, push: v as boolean })
                 }
                 className="w-5 h-5"
               />
             </label>
             <label className="flex items-center justify-between p-4 bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition">
               <span className="text-white">Game Updates</span>
-              <input
-                type="checkbox"
+              <Checkbox
                 checked={notifications.updates}
-                onChange={(e) =>
+                onCheckedChange={(v) =>
                   setNotifications({
                     ...notifications,
-                    updates: e.target.checked,
+                    updates: v as boolean,
                   })
                 }
                 className="w-5 h-5"

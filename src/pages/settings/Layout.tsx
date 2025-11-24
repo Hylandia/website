@@ -22,7 +22,7 @@ export default function SettingsLayout() {
 
   return (
     <div className="min-h-screen bg-neutral py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-16">
         <div className="mb-8">
           <h1 className="text-4xl font-black text-white uppercase tracking-wider mb-2">
             Settings

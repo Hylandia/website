@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #be5f57;
+  --color-secondary: #f09963;
+  --color-tertiary: #e99071;
+  --color-accent: #b1b67c;
+  --color-neutral: #2c343f;
+  --font-sans: var(--font-cinzel);
+  --font-mono: var(--font-medieval);
+  --font-decorative: var(--font-cinzel-decorative);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
 :root {
   --font-cinzel: "Cinzel", serif;
   --font-medieval: "MedievalSharp", cursive;
