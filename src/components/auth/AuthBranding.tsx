@@ -1,8 +1,6 @@
-"use client";
-
 import { motion } from "framer-motion";
-import { Castle, Sparkles, Shield, Sword } from "lucide-react";
-import Link from "next/link";
+import { Shield, Sword } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function AuthBranding() {
   return (
@@ -12,7 +10,7 @@ export function AuthBranding() {
       transition={{ duration: 0.6 }}
       className="hidden md:flex flex-col gap-8"
     >
-      <Link href="/" className="flex items-center group">
+      <Link to="/" className="flex items-center group">
         <img src="/media/banner.png" alt="Hylandia" className="h-16 w-auto" />
       </Link>
 

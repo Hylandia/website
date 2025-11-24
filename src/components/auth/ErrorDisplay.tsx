@@ -2,10 +2,9 @@
 
 import { motion } from "framer-motion";
 import { AlertCircle } from "lucide-react";
-import { ClerkAPIError } from "@clerk/types";
 
 interface ErrorDisplayProps {
-  errors?: ClerkAPIError[];
+  errors?: Array<{ message: string; code?: string }>;
 }
 
 export function ErrorDisplay({ errors }: ErrorDisplayProps) {

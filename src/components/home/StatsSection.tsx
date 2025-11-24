@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Swords, Users, Trophy, LucideIcon } from "lucide-react";
+import { Swords, Users, Trophy } from "lucide-react";
 
 const stats = [
   {
@@ -29,10 +29,10 @@ export function StatsSection() {
     <div className="w-full py-20 bg-linear-to-b from-background to-neutral/50 relative">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-8">
-          {stats.map((stat, i) => (
+          {stats.map((stat) => (
             <motion.div
               key={stat.label}
-               style={{ willChange: "transform, opacity" }}
+              style={{ willChange: "transform, opacity" }}
               className={`flex flex-col items-center gap-4 p-8 bg-neutral/50 border-2 border-${stat.color}/40 backdrop-blur-sm hover:border-${stat.color}/70 transition-all group shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_4px_12px_rgba(0,0,0,0.4)] relative overflow-hidden`}
             >
               {/* Corner decorations */}
