@@ -5,6 +5,8 @@ import { Footer } from "./components/Footer";
 import HomePage from "./pages/Home";
 import AuthPage from "./pages/Auth";
 import LogoutPage from "./pages/Logout";
+import VerifyEmailPage from "./pages/VerifyEmail";
+import ForgotPasswordPage from "./pages/ForgotPassword";
 import LeaderboardsPage from "./pages/Leaderboards";
 import SettingsLayout from "./pages/settings/Layout";
 import AccountSettingsPage from "./pages/settings/Account";
@@ -37,6 +39,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/logout" element={<LogoutPage />} />
+              <Route path="/verify-email" element={<VerifyEmailPage />} />
+              <Route path="/forgot-password" element={<ForgotPasswordPage />} />
               <Route path="/leaderboards" element={<LeaderboardsPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />

@@ -27,16 +27,31 @@ export default function AuthPage() {
     Array<{ message: string; code?: string }>
   >([]);
   const [showRegistrationMessage, setShowRegistrationMessage] = useState(false);
+  const [showVerifiedMessage, setShowVerifiedMessage] = useState(false);
+  const [showPasswordResetMessage, setShowPasswordResetMessage] =
+    useState(false);
   const [searchParams] = useSearchParams();
 
   const loginMutation = useLogin();
   const registerMutation = useRegister();
 
-  // Check if user just registered
+  // Check for success messages
   useEffect(() => {
     if (searchParams.get("registered") === "true") {
       setTimeout(() => {
         setShowRegistrationMessage(true);
+        setIsLogin(true);
+      }, 0);
+    }
+    if (searchParams.get("verified") === "true") {
+      setTimeout(() => {
+        setShowVerifiedMessage(true);
+        setIsLogin(true);
+      }, 0);
+    }
+    if (searchParams.get("password-reset") === "true") {
+      setTimeout(() => {
+        setShowPasswordResetMessage(true);
         setIsLogin(true);
       }, 0);
     }
@@ -66,6 +81,8 @@ export default function AuthPage() {
   const onSignIn = async (data: SignInFormData) => {
     setErrors([]);
     setShowRegistrationMessage(false);
+    setShowVerifiedMessage(false);
+    setShowPasswordResetMessage(false);
 
     try {
       await loginMutation.mutateAsync({
@@ -96,6 +113,8 @@ export default function AuthPage() {
   const handleSocialLogin = async (provider: string) => {
     setErrors([]);
     setShowRegistrationMessage(false);
+    setShowVerifiedMessage(false);
+    setShowPasswordResetMessage(false);
 
     try {
       const redirectUrl = searchParams.get("redirect_url") || "/";
@@ -155,6 +174,44 @@ export default function AuthPage() {
                 </motion.div>
               )}
 
+              {showVerifiedMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 flex items-start gap-3 mb-6"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-green-200 text-sm font-semibold">
+                      Email Verified!
+                    </p>
+                    <p className="text-green-200/80 text-xs mt-1">
+                      Your email has been successfully verified. You can now log
+                      in to your account.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
+              {showPasswordResetMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 flex items-start gap-3 mb-6"
+                >
+                  <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-green-200 text-sm font-semibold">
+                      Password Reset Successful!
+                    </p>
+                    <p className="text-green-200/80 text-xs mt-1">
+                      Your password has been successfully reset. You can now log
+                      in with your new password.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
               <div className="flex gap-2 bg-white/5 p-1 mb-6">
                 <button
                   type="button"
@@ -162,6 +219,8 @@ export default function AuthPage() {
                     setIsLogin(true);
                     setErrors([]);
                     setShowRegistrationMessage(false);
+                    setShowVerifiedMessage(false);
+                    setShowPasswordResetMessage(false);
                   }}
                   className={`flex-1 py-2 md:py-3 px-4 md:px-6 font-bold transition-all uppercase tracking-wider border-2 text-sm md:text-base ${
                     isLogin
@@ -177,6 +236,8 @@ export default function AuthPage() {
                     setIsLogin(false);
                     setErrors([]);
                     setShowRegistrationMessage(false);
+                    setShowVerifiedMessage(false);
+                    setShowPasswordResetMessage(false);
                   }}
                   className={`flex-1 py-2 md:py-3 px-4 md:px-6 font-bold transition-all uppercase tracking-wider border-2 text-sm md:text-base ${
                     !isLogin
