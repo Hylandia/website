@@ -25,7 +25,7 @@ export const API_ENDPOINTS = {
 } as const;
 
 // API Response Types
-export interface APIResponse<T = any> {
+export interface APIResponse<T = unknown> {
   success: boolean;
   code: number;
   data: T | null;
