@@ -7,9 +7,9 @@ export function useRegister() {
 
   return useMutation({
     mutationFn: (data: RegisterRequest) => authAPI.register(data),
-    onSuccess: () => {
-      // Redirect to login with registration success message
-      navigate("/auth?registered=true");
+    onSuccess: (_, variables) => {
+      // Redirect to email verification with user's email
+      navigate(`/verify-email?email=${encodeURIComponent(variables.email)}`);
     },
   });
 }

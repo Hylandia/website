@@ -17,6 +17,10 @@ export const API_ENDPOINTS = {
     resendVerification: `${API_BASE_URL}/auth/user/resend-verification`,
     sessions: `${API_BASE_URL}/auth/user/sessions`,
     revokeSession: (id: string) => `${API_BASE_URL}/auth/user/sessions/${id}`,
+    sendVerificationCode: `${API_BASE_URL}/auth/user/verify-email/send-code`,
+    verifyEmail: `${API_BASE_URL}/auth/user/verify-email/verify`,
+    sendPasswordResetCode: `${API_BASE_URL}/auth/user/forgot-password/send-code`,
+    resetPassword: `${API_BASE_URL}/auth/user/forgot-password/reset-password`,
   },
   players: {
     stats: `${API_BASE_URL}/players/me/stats`,
@@ -188,6 +192,44 @@ export const authAPI = {
   getLeaderboards: async () => {
     return apiFetch<LeaderboardsData>(API_ENDPOINTS.players.leaderboards, {
       method: "GET",
+    });
+  },
+
+  sendVerificationCode: async (email: string) => {
+    return apiFetch<{ message: string }>(
+      API_ENDPOINTS.auth.sendVerificationCode,
+      {
+        method: "POST",
+        body: JSON.stringify({ email }),
+      }
+    );
+  },
+
+  verifyEmail: async (data: { email: string; code: string }) => {
+    return apiFetch<{ message: string }>(API_ENDPOINTS.auth.verifyEmail, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  },
+
+  sendPasswordResetCode: async (email: string) => {
+    return apiFetch<{ message: string }>(
+      API_ENDPOINTS.auth.sendPasswordResetCode,
+      {
+        method: "POST",
+        body: JSON.stringify({ email }),
+      }
+    );
+  },
+
+  resetPassword: async (data: {
+    email: string;
+    code: string;
+    newPassword: string;
+  }) => {
+    return apiFetch<{ message: string }>(API_ENDPOINTS.auth.resetPassword, {
+      method: "POST",
+      body: JSON.stringify(data),
     });
   },
 };
