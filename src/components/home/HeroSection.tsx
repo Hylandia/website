@@ -1,8 +1,4 @@
-"use client";
-
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Sword, Crown } from "lucide-react";
-
 interface HeroSectionProps {
   onCopyIP: () => void;
   copiedIP: boolean;

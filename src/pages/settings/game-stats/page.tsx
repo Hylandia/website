@@ -1,19 +1,19 @@
-"use client";
+// This page has been moved to src/pages/settings/GameStats.tsx
+// Using React Router instead of Next.js
 
 import { useState, useEffect } from "react";
-import { useUser } from "@clerk/nextjs";
+import { useUser } from "@/hooks/useUser";
 import { motion } from "framer-motion";
 import {
   Trophy,
   Target,
   TrendingUp,
-  Star,
   Award,
   Zap,
   Clock,
   Users,
 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 interface GameStats {
   totalGamesPlayed: number;
@@ -30,8 +30,8 @@ interface GameStats {
 }
 
 export default function GameStatsPage() {
-  const { user } = useUser();
-  const [stats, setStats] = useState<GameStats>({
+  const { data: user } = useUser();
+  const [stats] = useState<GameStats>({
     totalGamesPlayed: 0,
     wins: 0,
     losses: 0,
@@ -45,13 +45,9 @@ export default function GameStatsPage() {
     nextLevelXp: 100,
   });
 
+  // Game stats will be fetched from API once implemented
   useEffect(() => {
-    if (user) {
-      const metadata = user.unsafeMetadata as any;
-      if (metadata?.gameStats) {
-        setStats(metadata.gameStats);
-      }
-    }
+    // TODO: Fetch game stats from API
   }, [user]);
 
   const formatPlaytime = (minutes: number) => {
@@ -117,12 +113,12 @@ export default function GameStatsPage() {
     <>
       {/* Breadcrumb */}
       <div className="mb-6 text-sm text-neutral-400 uppercase tracking-wider">
-        <Link href="/" className="hover:text-primary transition-colors">
+        <Link to="/" className="hover:text-primary transition-colors">
           Home
         </Link>
         <span className="mx-2">/</span>
         <Link
-          href="/settings/account"
+          to="/settings/account"
           className="hover:text-primary transition-colors"
         >
           Settings
