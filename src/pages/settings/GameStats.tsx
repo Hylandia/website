@@ -24,10 +24,12 @@ import { StatCard } from "@/components/game-stats/StatCard";
 import { SkillCard } from "@/components/game-stats/SkillCard";
 import { WeaponStats } from "@/components/game-stats/WeaponStats";
 import { RankingCard } from "@/components/game-stats/RankingCard";
+import { useUser } from "@/hooks/useUser";
 
 export default function GameStatsSettingsPage() {
   useRequireAuth();
   const { data, isLoading, error } = usePlayerStats();
+  const { data: user } = useUser();
 
   const formatNumber = (num: number) => num.toLocaleString();
   const formatDistance = (blocks: number) => {
@@ -261,8 +263,8 @@ export default function GameStatsSettingsPage() {
 
         {/* Player Header with Level & XP */}
         <PlayerHeader
-          username={player.username}
-          displayName={player.displayName}
+          username={user?.username || player.username}
+          displayName={user?.username || player.username || player.displayName}
           level={player.level}
           experience={player.experience}
           firstJoined={player.firstJoined}
