@@ -1,9 +1,23 @@
 import { motion } from "framer-motion";
-import { Swords, Shield, Lock, Eye, Database, Mail, type LucideIcon } from "lucide-react";
+import { useEffect } from "react";
+import {
+  Swords,
+  Shield,
+  Lock,
+  Eye,
+  Database,
+  Mail,
+  type LucideIcon,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function PrivacyPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen  w-screen bg-neutral relative overflow-hidden">
       {/* Background */}
