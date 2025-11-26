@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Swords, Users, Trophy, Zap, LucideIcon } from "lucide-react";
+import { Swords, Users, Trophy, type LucideIcon } from "lucide-react";
 
 interface Feature {
   icon: LucideIcon;

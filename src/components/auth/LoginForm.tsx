@@ -1,12 +1,10 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { UseFormReturn } from "react-hook-form";
-import { SignInFormData } from "@/schemas/auth.schema";
-import Link from "next/link";
+import type { UseFormReturn } from "react-hook-form";
+import type { SignInFormData } from "@/schemas/auth.schema";
+import { Link } from "react-router-dom";
 
 interface LoginFormProps {
   form: UseFormReturn<SignInFormData>;
@@ -51,7 +49,7 @@ export function LoginForm({
             Password
           </label>
           <Link
-            href="/forgot-password"
+            to="/forgot-password"
             className="text-xs text-secondary hover:text-secondary/80 transition-colors uppercase tracking-wider font-semibold"
           >
             Forgot password?
