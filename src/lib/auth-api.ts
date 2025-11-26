@@ -1,7 +1,10 @@
+import type { PlayerStats, PlayerStatsResponse } from "@/types/player-stats";
+import type { LeaderboardsData } from "@/types/leaderboards";
+
 // API Configuration
 export const API_BASE_URL =
-  process.env.API_BASE_URL ||
-  (process.env.NODE_ENV === "development" && "http://localhost:3001/v1") ||
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.MODE === "development" && "http://localhost:3001/v1") ||
   "https://api-dev.hylandia.net/v1";
 
 export const API_ENDPOINTS = {
@@ -10,9 +13,14 @@ export const API_ENDPOINTS = {
     login: `${API_BASE_URL}/auth/user/login`,
     logout: `${API_BASE_URL}/auth/user/logout`,
     me: `${API_BASE_URL}/auth/user/me`,
+    updateAccount: `${API_BASE_URL}/auth/user/account`,
     resendVerification: `${API_BASE_URL}/auth/user/resend-verification`,
     sessions: `${API_BASE_URL}/auth/user/sessions`,
     revokeSession: (id: string) => `${API_BASE_URL}/auth/user/sessions/${id}`,
+  },
+  players: {
+    stats: `${API_BASE_URL}/players/me/stats`,
+    leaderboards: `${API_BASE_URL}/players/leaderboards`,
   },
 } as const;
 
@@ -140,6 +148,17 @@ export const authAPI = {
     return apiFetch<User>(API_ENDPOINTS.auth.me);
   },
 
+  updateAccount: async (data: {
+    firstName?: string;
+    lastName?: string;
+    username?: string;
+  }) => {
+    return apiFetch<User>(API_ENDPOINTS.auth.updateAccount, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    });
+  },
+
   resendVerification: async (email: string) => {
     return apiFetch<{ message: string; note: string }>(
       API_ENDPOINTS.auth.resendVerification,
@@ -157,6 +176,18 @@ export const authAPI = {
   revokeSession: async (id: string) => {
     return apiFetch<{ message: string }>(API_ENDPOINTS.auth.revokeSession(id), {
       method: "DELETE",
+    });
+  },
+
+  getPlayerStats: async () => {
+    return apiFetch<PlayerStats>(API_ENDPOINTS.players.stats, {
+      method: "GET",
+    });
+  },
+
+  getLeaderboards: async () => {
+    return apiFetch<LeaderboardsData>(API_ENDPOINTS.players.leaderboards, {
+      method: "GET",
     });
   },
 };

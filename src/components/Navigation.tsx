@@ -38,6 +38,13 @@ export function Navigation() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full shadow-[0_0_8px_rgba(240,153,99,0.6)]" />
             </a>
             <a
+              href="/leaderboards"
+              className="text-white/90 hover:text-secondary transition-colors relative group uppercase tracking-wider text-sm font-semibold"
+            >
+              Leaderboards
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all group-hover:w-full shadow-[0_0_8px_rgba(240,153,99,0.6)]" />
+            </a>
+            <a
               href="#community"
               className="text-white/90 hover:text-secondary transition-colors relative group uppercase tracking-wider text-sm font-semibold"
             >
@@ -99,6 +106,13 @@ export function Navigation() {
                   className="text-white/90 hover:text-secondary transition-colors uppercase tracking-wider text-sm font-semibold py-2"
                 >
                   Features
+                </a>
+                <a
+                  href="/leaderboards"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-white/90 hover:text-secondary transition-colors uppercase tracking-wider text-sm font-semibold py-2"
+                >
+                  Leaderboards
                 </a>
                 <a
                   href="#community"
