@@ -5,6 +5,7 @@ import { Footer } from "./components/Footer";
 import HomePage from "./pages/Home";
 import AuthPage from "./pages/Auth";
 import LogoutPage from "./pages/Logout";
+import LeaderboardsPage from "./pages/Leaderboards";
 import SettingsLayout from "./pages/settings/Layout";
 import AccountSettingsPage from "./pages/settings/Account";
 import ConnectionsSettingsPage from "./pages/settings/Connections";
@@ -36,6 +37,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/logout" element={<LogoutPage />} />
+              <Route path="/leaderboards" element={<LeaderboardsPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/refund" element={<RefundPage />} />
