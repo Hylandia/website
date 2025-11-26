@@ -1,4 +1,4 @@
-import type { PlayerStats, PlayerStatsResponse } from "@/types/player-stats";
+import type { PlayerStats } from "@/types/player-stats";
 import type { LeaderboardsData } from "@/types/leaderboards";
 
 // API Configuration
