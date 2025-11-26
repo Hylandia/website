@@ -1,8 +1,8 @@
 // API Configuration
-const API_BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://api-dev.hylandia.com/v1"
-    : "http://localhost:3001/v1";
+export const API_BASE_URL =
+  process.env.API_BASE_URL ||
+  (process.env.NODE_ENV === "development" && "http://localhost:3001/v1") ||
+  "https://api-dev.hylandia.net/v1";
 
 export const API_ENDPOINTS = {
   auth: {

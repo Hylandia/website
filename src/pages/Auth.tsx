@@ -18,6 +18,7 @@ import { ErrorDisplay } from "@/components/auth/ErrorDisplay";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { RegisterForm } from "@/components/auth/RegisterForm";
 import { SocialLogin } from "@/components/auth/SocialLogin";
+import { API_BASE_URL } from "@/lib/auth-api";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -98,10 +99,7 @@ export default function AuthPage() {
 
     try {
       const redirectUrl = searchParams.get("redirect_url") || "/";
-      const apiBase =
-        process.env.NODE_ENV === "production"
-          ? "https://api.hylandia.com/v1"
-          : "http://localhost:3001/api";
+      const apiBase = API_BASE_URL;
 
       window.location.href = `${apiBase}/auth/oauth/${provider}?redirect_url=${encodeURIComponent(
         redirectUrl
