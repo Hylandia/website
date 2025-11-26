@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import {
   Swords,
   Scale,
@@ -10,6 +11,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function TermsPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen mt-16 w-screen bg-neutral relative overflow-hidden">
       {/* Background */}
