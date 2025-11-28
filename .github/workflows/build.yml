@@ -2,7 +2,7 @@ name: Build and Deploy Homepage
 
 on:
   push:
-    branches: [ develop, main ]
+    branches: [ develop, master ]
 
 env:
   REGISTRY: ${{ secrets.REPO_URL }}
