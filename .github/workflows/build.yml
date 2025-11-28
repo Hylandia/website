@@ -115,9 +115,9 @@ jobs:
         echo "${{ secrets.PROD_KUBECONFIG }}" > /tmp/kubeconfig
         # Use the specific image tag produced in the previous step (IMAGE_TAG)
         kubectl --kubeconfig /tmp/kubeconfig set image deployment/homepage homepage=$REGISTRY/docker-private/$IMAGE_NAME:$IMAGE_TAG -n hylandia-prod
-        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n hylandia-prod --timeout=300s
+        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n hylandia --timeout=300s
 
     - name: Verify production deployment
       run: |
         echo "${{ secrets.PROD_KUBECONFIG }}" > /tmp/kubeconfig
-        kubectl --kubeconfig /tmp/kubeconfig get pods -n hylandia-prod -l app=homepage
+        kubectl --kubeconfig /tmp/kubeconfig get pods -n hylandia -l app=homepage
