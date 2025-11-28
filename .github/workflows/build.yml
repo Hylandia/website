@@ -3,6 +3,7 @@ name: Build and Deploy Homepage
 on:
   push:
     branches: [ develop, master ]
+  workflow_dispatch:
 
 env:
   REGISTRY: ${{ secrets.REPO_URL }}
