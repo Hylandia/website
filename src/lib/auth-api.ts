@@ -1,11 +1,19 @@
 import type { PlayerStats } from "@/types/player-stats";
 import type { LeaderboardsData } from "@/types/leaderboards";
+import type { OAuthConnection, OAuthProvider } from "@/types/connections";
 
 // API Configuration
 export const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   (import.meta.env.MODE === "development" && "http://localhost:3001/v1") ||
   "https://api-dev.hylandia.net/v1";
+
+export const getAppBaseUrl = () => {
+  if (typeof window !== "undefined") {
+    return `${window.location.protocol}//${window.location.host}`;
+  }
+  return "";
+};
 
 export const API_ENDPOINTS = {
   auth: {
@@ -21,6 +29,19 @@ export const API_ENDPOINTS = {
     verifyEmail: `${API_BASE_URL}/auth/user/verify-email/verify`,
     sendPasswordResetCode: `${API_BASE_URL}/auth/user/forgot-password/send-code`,
     resetPassword: `${API_BASE_URL}/auth/user/forgot-password/reset-password`,
+    connections: `${API_BASE_URL}/auth/user/connections`,
+    removeConnection: (provider: string) =>
+      `${API_BASE_URL}/auth/user/connections/${provider}`,
+    linkProvider: (provider: string, redirectAfter?: string) => {
+      const fullRedirectUrl = redirectAfter
+        ? `${getAppBaseUrl()}${redirectAfter}`
+        : "";
+      return `${API_BASE_URL}/auth/oauth/${provider}?link=true${
+        fullRedirectUrl
+          ? `&redirect_after=${encodeURIComponent(fullRedirectUrl)}`
+          : ""
+      }`;
+    },
   },
   players: {
     stats: `${API_BASE_URL}/players/me/stats`,
@@ -231,5 +252,25 @@ export const authAPI = {
       method: "POST",
       body: JSON.stringify(data),
     });
+  },
+
+  getConnections: async () => {
+    return apiFetch<OAuthConnection[]>(API_ENDPOINTS.auth.connections);
+  },
+
+  removeConnection: async (provider: OAuthProvider) => {
+    return apiFetch<{ message: string }>(
+      API_ENDPOINTS.auth.removeConnection(provider),
+      {
+        method: "DELETE",
+      }
+    );
+  },
+
+  linkProvider: (provider: OAuthProvider, redirectAfter?: string) => {
+    window.location.href = API_ENDPOINTS.auth.linkProvider(
+      provider,
+      redirectAfter
+    );
   },
 };
