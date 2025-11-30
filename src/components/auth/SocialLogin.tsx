@@ -50,7 +50,7 @@ export function SocialLogin({ onSignIn, isLoading }: SocialLoginProps) {
         </motion.button>
         <motion.button
           type="button"
-          onClick={() => onSignIn("microsoft")}
+          onClick={() => onSignIn("windowslive")}
           disabled={isLoading}
           whileHover={{ scale: isLoading ? 1 : 1.02 }}
           whileTap={{ scale: isLoading ? 1 : 0.98 }}
