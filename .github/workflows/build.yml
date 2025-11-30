@@ -1,0 +1,124 @@
+name: Build and Deploy Homepage
+
+on:
+  push:
+    branches: [ develop, master ]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ${{ secrets.REPO_URL }}
+  IMAGE_NAME: homepage
+
+jobs:
+  build-dev:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ secrets.REPO_USER }}
+        password: ${{ secrets.REPO_PASS }}
+
+    - name: Prepare short SHA
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const sha = process.env.GITHUB_SHA.substring(0,7);
+          const envLine = `DEV_SHORT_SHA=${sha}\n`;
+          require('fs').appendFileSync(process.env.GITHUB_ENV, envLine);
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./stack/Dockerfile
+        push: true
+        tags: |
+          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:devel
+          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:dev-${{ env.DEV_SHORT_SHA }}
+
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Deploy to Kubernetes (Dev)
+      run: |
+        SHORT_SHA=$(git rev-parse --short HEAD)
+        echo "${{ secrets.DEV_KUBECONFIG }}" > /tmp/kubeconfig
+        kubectl --kubeconfig /tmp/kubeconfig set image deployment/homepage homepage=$REGISTRY/docker-private/$IMAGE_NAME:dev-$SHORT_SHA -n hylandia-dev
+        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n hylandia-dev --timeout=300s
+
+    - name: Verify deployment
+      run: |
+        echo "${{ secrets.DEV_KUBECONFIG }}" > /tmp/kubeconfig
+        kubectl --kubeconfig /tmp/kubeconfig get pods -n hylandia-dev -l app=homepage
+
+    - name: Debug on failure
+      if: failure()
+      run: |
+        docker info
+        cat ~/.docker/config.json
+        curl -I https://$REGISTRY/repository/docker-private/v2/
+
+  build-prod:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ secrets.REPO_USER }}
+        password: ${{ secrets.REPO_PASS }}
+
+    - name: Prepare image tag
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const sha = process.env.GITHUB_SHA.substring(0,7);
+          const now = new Date();
+          const pad = n => n.toString().padStart(2,'0');
+          const dateTag = `${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+          const imageTag = `${dateTag}-${sha}`;
+          fs.appendFileSync(process.env.GITHUB_ENV, `IMAGE_TAG=${imageTag}\n`);
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./stack/Dockerfile
+        push: true
+        tags: |
+          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:latest
+          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Deploy to Kubernetes (Production)
+      run: |
+        echo "${{ secrets.PROD_KUBECONFIG }}" > /tmp/kubeconfig
+        # Use the specific image tag produced in the previous step (IMAGE_TAG)
+        kubectl --kubeconfig /tmp/kubeconfig set image deployment/homepage homepage=$REGISTRY/docker-private/$IMAGE_NAME:$IMAGE_TAG -n hylandia
+        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n hylandia --timeout=300s
+
+    - name: Verify production deployment
+      run: |
+        echo "${{ secrets.PROD_KUBECONFIG }}" > /tmp/kubeconfig
+        kubectl --kubeconfig /tmp/kubeconfig get pods -n hylandia -l app=homepage
