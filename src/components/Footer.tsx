@@ -127,6 +127,9 @@ export function Footer() {
           <p className="text-white/40 text-sm text-center uppercase tracking-wider">
             © {currentYear} Hylandia. All rights reserved.
           </p>
+          <p className="text-[10px] text-white/30 text-center mt-2">
+            IID: {import.meta.env?.HOSTNAME ?? ""}
+          </p>
         </div>
       </div>
     </footer>

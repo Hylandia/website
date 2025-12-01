@@ -1,6 +1,8 @@
 #!/bin/sh
 
-env > /app/.env
+echo "HOSTNAME=$HOSTNAME" >> /app/.env
+echo "NODE_ENV=$NODE_ENV" >> /app/.env
+
 pnpm build
 
 cp -r /app/dist /usr/share/nginx/html
