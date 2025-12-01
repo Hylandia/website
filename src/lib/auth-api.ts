@@ -4,9 +4,9 @@ import type { OAuthConnection, OAuthProvider } from "@/types/connections";
 
 // API Configuration
 export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.MODE === "development" && "http://localhost:3001/v1") ||
-  "https://api-dev.hylandia.net/v1";
+  import.meta.env.API_BASE_URL ||
+  (import.meta.env.VITE_USER_NODE_ENV === "development" && "https://api-dev.hylandia.net/v1") ||
+  "https://api.hylandia.net/v1";
 
 export const getAppBaseUrl = () => {
   if (typeof window !== "undefined") {
