@@ -7,6 +7,10 @@ pnpm build
 
 cp -r /app/dist /usr/share/nginx/html
 
+# Cleanup
+find /usr/share/nginx/html -type f -name '*.map' -delete
+rm -rf /app
+
 # start nginx in the foreground but background it so this shell remains PID 1
 nginx -g 'daemon off;' &
 NGINX_PID=$!
