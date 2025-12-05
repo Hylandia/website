@@ -4,7 +4,7 @@ on:
   push:
     branches: [ develop, master ]
   workflow_dispatch:
-
+    
 env:
   REGISTRY: ${{ secrets.REPO_URL }}
   IMAGE_NAME: homepage
@@ -43,8 +43,7 @@ jobs:
         file: ./stack/Dockerfile
         push: true
         tags: |
-          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:devel
-          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:dev-${{ env.DEV_SHORT_SHA }}
+          ${{ env.REGISTRY }}/docker-dev/${{ env.IMAGE_NAME }}:dev-${{ env.DEV_SHORT_SHA }}
 
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
@@ -53,20 +52,20 @@ jobs:
       run: |
         SHORT_SHA=$(git rev-parse --short HEAD)
         echo "${{ secrets.DEV_KUBECONFIG }}" > /tmp/kubeconfig
-        kubectl --kubeconfig /tmp/kubeconfig set image deployment/homepage homepage=$REGISTRY/docker-private/$IMAGE_NAME:dev-$SHORT_SHA -n hylandia-dev
-        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n hylandia-dev --timeout=300s
+        kubectl --kubeconfig /tmp/kubeconfig set image deployment/homepage homepage=$REGISTRY/docker-dev/$IMAGE_NAME:dev-$SHORT_SHA -n dev
+        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n dev --timeout=300s
 
     - name: Verify deployment
       run: |
         echo "${{ secrets.DEV_KUBECONFIG }}" > /tmp/kubeconfig
-        kubectl --kubeconfig /tmp/kubeconfig get pods -n hylandia-dev -l app=homepage
+        kubectl --kubeconfig /tmp/kubeconfig get pods -n dev -l app=homepage
 
     - name: Debug on failure
       if: failure()
       run: |
         docker info
         cat ~/.docker/config.json
-        curl -I https://$REGISTRY/repository/docker-private/v2/
+        curl -I https://$REGISTRY/repository/docker-dev/v2/
 
   build-prod:
     runs-on: ubuntu-latest
@@ -105,8 +104,8 @@ jobs:
         file: ./stack/Dockerfile
         push: true
         tags: |
-          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:latest
-          ${{ env.REGISTRY }}/docker-private/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          ${{ env.REGISTRY }}/docker-prod/${{ env.IMAGE_NAME }}:latest
+          ${{ env.REGISTRY }}/docker-prod/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
@@ -115,10 +114,10 @@ jobs:
       run: |
         echo "${{ secrets.PROD_KUBECONFIG }}" > /tmp/kubeconfig
         # Use the specific image tag produced in the previous step (IMAGE_TAG)
-        kubectl --kubeconfig /tmp/kubeconfig set image deployment/homepage homepage=$REGISTRY/docker-private/$IMAGE_NAME:$IMAGE_TAG -n hylandia
-        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n hylandia --timeout=300s
+        kubectl --kubeconfig /tmp/kubeconfig set image deployment/homepage homepage=$REGISTRY/docker-prod/$IMAGE_NAME:$IMAGE_TAG -n prod
+        kubectl --kubeconfig /tmp/kubeconfig rollout status deployment/homepage -n prod --timeout=300s
 
     - name: Verify production deployment
       run: |
         echo "${{ secrets.PROD_KUBECONFIG }}" > /tmp/kubeconfig
-        kubectl --kubeconfig /tmp/kubeconfig get pods -n hylandia -l app=homepage
+        kubectl --kubeconfig /tmp/kubeconfig get pods -n prod -l app=homepage
